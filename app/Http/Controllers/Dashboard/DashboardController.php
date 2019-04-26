@@ -16,7 +16,7 @@ class DashboardController extends Controller
     public function index(Request $request)
     {
         if($request->user()->authorizeRoles(['manager'])){
-            return view('dashboard.app');
+            return view('dashboard.layouts.index');
         }else{
             return redirect('/');
         }
