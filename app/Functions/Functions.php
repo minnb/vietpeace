@@ -85,6 +85,22 @@ function fencrypt($string) {
     return base64_encode($result);
 }
 
+function menuMulti ($data, $parent_id = 0, $str="---|", $select=0) {
+  foreach ($data as $val) {
+    $id = $val->id;
+    $name = $val->name;
+    if ($val->parent == $parent_id) {
+      if ($select != 0 && $id == $select) {
+        echo '<option value="'.$id.'" selected>'.$str." ".$name.'</option>';
+      } else {
+        echo '<option value="'.$id.'" >'.$str." ".$name.'</option>';
+      }
+      $space ="---";
+      menuMulti ($data, $id, $space." ---|",$select);
+    }
+  }
+}
+
 //use for array
 function selectedOption($array,$select){
   foreach($array as $key=>$value){
@@ -143,3 +159,4 @@ function delete_image_no_path($img){
   }
 }
 
+include('Common.php');

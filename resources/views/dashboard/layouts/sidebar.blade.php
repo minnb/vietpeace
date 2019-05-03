@@ -16,39 +16,93 @@
         </li>
         <li class="active open">
             <a href="#" class="dropdown-toggle">
-                <i class="menu-icon fa fa-lock"></i>
+                <i class="menu-icon fa fa-book"></i>
                 <span class="menu-text">
-                    Master Data
+                    Category
                 </span>
                 <b class="arrow fa fa-angle-down"></b>
             </a>
             <b class="arrow"></b>
             <ul class="submenu">
-                <li class="active">
-                    <a href="">
+                <li class="">
+                    <a href="{{route('get.dashboard.category.list',['alias'=>'destinations'])}}">
                         <i class="menu-icon fa fa-caret-right"></i>
-                        Block &amp; Unblock 40
+                        Destinations
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+                 <li class="">
+                    <a href="{{route('get.dashboard.category.list',['alias'=>'tours'])}}">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Tours
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+                 <li class="">
+                    <a href="{{route('get.dashboard.category.list',['alias'=>'travel-guide'])}}">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Travel Guide
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+                 <li class="">
+                    <a href="{{route('get.dashboard.category.list',['alias'=>'hotels'])}}">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Hotels
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+            </ul>
+        </li>
+        <li class="active open">
+            <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa fa-pencil-square-o"></i>
+                <span class="menu-text">
+                    Post
+                </span>
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+            <b class="arrow"></b>
+            <ul class="submenu">
+                <li class="">
+                    <a href="{{route('get.dashboard.post.list')}}">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Tours
                     </a>
                     <b class="arrow"></b>
                 </li>
                 <li class="">
                     <a href="">
                         <i class="menu-icon fa fa-caret-right"></i>
-                        Listing sản phẩm
+                        Destinations
                     </a>
                     <b class="arrow"></b>
                 </li>
                 <li class="">
                     <a href="">
                         <i class="menu-icon fa fa-caret-right"></i>
-                        Cài đặt giá bán thường
+                        Hotels
                     </a>
                     <b class="arrow"></b>
                 </li>
                 <li class="">
                     <a href="">
                         <i class="menu-icon fa fa-caret-right"></i>
-                        Cài đặt giá mua
+                        Travel Guide
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+                <li class="">
+                    <a href="">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Blogs
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+                <li class="">
+                    <a href="">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Video
                     </a>
                     <b class="arrow"></b>
                 </li>

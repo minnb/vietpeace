@@ -32,6 +32,7 @@
     @yield('javascript')
     <script src="{{asset('public/dashboard/js/ace-elements.min.js') }}"></script>
     <script src="{{asset('public/dashboard/js/ace.min.js') }}"></script>
+    <script src="{{asset('public/js/script.js') }}"></script>
 </body>
 </html>
 
