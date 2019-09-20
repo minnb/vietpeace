@@ -20,7 +20,7 @@
                 <i class="ace-icon fa fa-check green"></i>
                 Welcome to
                 <strong class="green">
-                    WebPortal Vincommerce
+                    VietpeaceTravel
                     <small>(v1.0)</small>
                 </strong>,
             </div>
