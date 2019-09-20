@@ -72,6 +72,7 @@ class CateController extends Controller
 
     public function getEdit($name, $id){
         //$id = fdecrypt($idd);
+        
         $data = Category::findOrFail($id);
         $parent = DB::table('categories')->where('alias', $name)->get()[0]->id;
         return view('dashboard.cate.edit', compact('data', 'id', 'name','parent'));
