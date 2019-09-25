@@ -15,8 +15,8 @@
             </small>
         </h1>
     </div>
+    @include('dashboard.layouts.alert')
 </div>
-@include('dashboard.layouts.alert')
 <div class="page-content">
     <div class="row">
         <div class="col-xs-12">
@@ -35,13 +35,13 @@
                 </ul>
                 <div class="tab-content">
                     <div id="add" class="tab-pane fade in active">
-                       <form class="form-horizontal" role="form" action="{{route('post.dashboard.post.add')}}" method="POST" enctype="multipart/form-data">
+                       <form class="form-horizontal" role="form" action="{{route('post.dashboard.post.edit', ['id'=>fencrypt($id)])}}" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="_token" value="<?php echo csrf_token() ?>">
                             <div class="form-group">
                                 <label class="col-xs-2 control-label no-padding-right" for="form-field-1"> Category </label>
                                 <div class="col-xs-10">
                                     <select multiple="" id="cate_id" name="cate_id[]" class="select2">
-                                        {!! getSelectForm(App\Models\Category::getSelect2Category(), old('cate_id',isset($data) ? $data['cate_id']:0) ) !!}
+                                        {!! getSelectArrayForm(App\Models\Category::getSelect2Category(), old('cate_id', isset($data) ? convertStrToArr("|", $data['cate_id']): [0]) ) !!}
                                     </select>
                                 </div>
                             </div>

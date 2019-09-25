@@ -15,6 +15,17 @@ class Category extends Model
         $data = DB::select('select * from categories where status = 1 and (parent = '.$parent.' OR id = '.$parent.') order by id');
     	return $data;
     }
+    public static function getStrCateName($cate_id){
+        $arr_cate = convertStrToArr("|", $cate_id);
+        $str_cate = "";
+        if(count($arr_cate) > 0 ){
+            foreach($arr_cate as $item){
+                $cate_name = Category::find($item)->name;
+                $str_cate = $cate_name.', '.$str_cate;
+            }
+        }
+        return $str_cate;
+    }
 
     public static function getSelectMenu(){
     	$data = DB::table('menu')->where([

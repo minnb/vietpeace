@@ -26,36 +26,35 @@ class PostController extends Controller
     }
 
     public function postAdd(Request $request){
-        return $request->all();
-        // try{
-        //     DB::beginTransaction();
-        //         $data = new Post();
-        //         $data->name = $request->name;
-        //         $data->cate_id = implode("|",$request->cate_id);
-        //         $data->alias = makeUnicode($request->name);
-        //         $data->description = $request->description;
-        //         $data->content = $request->content;
-        //         $data->status = $request->status == 'on' ? 1 : 0;
-        //         $data->user_id = Auth::user()->id;
-        //         $data->viewed = 0;
-        //         $data->vote = 0;
-        //         if($request->file('fileImage')){
-        //             foreach(Input::file('fileImage') as $file ){
-        //                 $destinationPath = checkFolderImage();
-        //                 if(isset($file)){
-        //                     $file_name = randomString().'.'.$file->getClientOriginalExtension();
-        //                     $data->image = $destinationPath.'/'.$file_name;
-        //                     $file->move($destinationPath, $file_name);
-        //                 }
-        //             }
-        //         }
-        //         $data->save();
-        //     DB::commit();
-        //     return redirect()->route('get.dashboard.post.list')->with(['flash_message'=>'Tạo mới thành công']);
-        //  }catch (\Exception $e) {
-        //     DB::rollBack();
-        //     return back()->withErrors($e->getMessage())->withInput($request->input());
-        // }
+        try{
+            DB::beginTransaction();
+                $data = new Post();
+                $data->name = $request->name;
+                $data->cate_id = implode("|",$request->cate_id);
+                $data->alias = makeUnicode($request->name);
+                $data->description = $request->description;
+                $data->content = $request->content;
+                $data->status = $request->status == 'on' ? 1 : 0;
+                $data->user_id = Auth::user()->id;
+                $data->viewed = 0;
+                $data->vote = 0;
+                if($request->file('fileImage')){
+                    foreach(Input::file('fileImage') as $file ){
+                        $destinationPath = checkFolderImage();
+                        if(isset($file)){
+                            $file_name = randomString().'.'.$file->getClientOriginalExtension();
+                            $data->image = $destinationPath.'/'.$file_name;
+                            $file->move($destinationPath, $file_name);
+                        }
+                    }
+                }
+                $data->save();
+            DB::commit();
+            return redirect()->route('get.dashboard.post.list')->with(['flash_message'=>'Tạo mới thành công']);
+         }catch (\Exception $e) {
+            DB::rollBack();
+            return back()->withErrors($e->getMessage())->withInput($request->input());
+        }
         
     }
 
@@ -69,7 +68,7 @@ class PostController extends Controller
         $id = fdecrypt($idd);
         try{
             DB::beginTransaction();
-                $data = Category::findOrFail($id);
+                $data = Post::findOrFail($id);
                 $old_img = $data->image;
                 $data->name = $request->name;
                 $data->cate_id = implode("|",$request->cate_id);
@@ -94,7 +93,7 @@ class PostController extends Controller
                 $data->save();
 
             DB::commit();
-            return redirect()->route('get.dashboard.category.list')->with(['flash_message'=>'Chỉnh sửa dữ liệu thành công']);
+            return redirect()->route('get.dashboard.post.list')->with(['flash_message'=>'Chỉnh sửa dữ liệu thành công']);
          }catch (\Exception $e) {
             DB::rollBack();
             return back()->withErrors($e->getMessage())->withInput($request->input());
@@ -105,9 +104,9 @@ class PostController extends Controller
         $id = fdecrypt($idd);
         try{
             DB::beginTransaction();
-                DB::table('categories')->where('id', $id)->update(['status'=>0]);
+                DB::table('posts')->where('id', $id)->update(['status'=>0]);
             DB::commit();
-            return redirect()->route('get.dashboard.category.list')->with(['flash_message'=>'Chỉnh sửa dữ liệu thành công']);
+            return redirect()->route('get.dashboard.post.list')->with(['flash_message'=>'Chỉnh sửa dữ liệu thành công']);
          }catch (\Exception $e) {
             DB::rollBack();
             return back()->withErrors($e->getMessage())->withInput($request->input());

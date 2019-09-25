@@ -1,6 +1,6 @@
 @if ($errors->any())
 <style type="text/css">
-	.dvi-alert{
+	.div-alert{
 		margin: 0; padding: 0;
 	}
 	.ul-alert{
@@ -17,11 +17,10 @@
 	</div>
 	<br>
 </div>
-
 @endif
 @if(Session::has('flash_message'))
 <style type="text/css">
-	.dvi-alert{
+	.div-alert{
 		margin: 0; padding: 0;
 	}
 	.ul-alert{

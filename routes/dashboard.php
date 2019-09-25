@@ -1,6 +1,9 @@
 <?php
 
 Route::group(['prefix'=> 'dashboard'], function(){
+	Route::group(['prefix'=> 'auth'], function(){
+		Route::get('logout', ['as'=>'get.dashboard.auth.logout','uses'=>'Dashboard\DashboardController@getLogout']);
+	});
 	Route::group(['prefix'=> 'category'], function(){
 		Route::get('list/{name}', ['as'=>'get.dashboard.category.list','uses'=>'Dashboard\CateController@getList']);
 		Route::get('add/{name}', ['as'=>'get.dashboard.category.add','uses'=>'Dashboard\CateController@getAdd']);

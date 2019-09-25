@@ -15,8 +15,8 @@
             </small>
         </h1>
     </div>
+    @include('dashboard.layouts.alert')
 </div>
-@include('dashboard.layouts.alert')
 <div class="page-content">
     <div class="row">
         <div class="col-xs-12">
@@ -41,7 +41,7 @@
                                 <label class="col-xs-2 control-label no-padding-right" for="form-field-1"> Category </label>
                                 <div class="col-xs-10">
                                     <select multiple="" id="cate_id" name="cate_id[]" class="select2" data-placeholder="Click to Choose...">
-                                        {!! getSelectForm(App\Models\Category::getSelect2Category(), 6) !!}
+                                        {!! getSelectArrayForm(App\Models\Category::getSelect2Category(), [0]) !!}
                                     </select>
                                 </div>
                             </div>

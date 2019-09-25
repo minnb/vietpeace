@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use App\Models\User;
 Use DB;
-
+Use Auth;
 class DashboardController extends Controller
 {
 	public function __construct()
@@ -20,5 +20,10 @@ class DashboardController extends Controller
         }else{
             return redirect('/');
         }
+    }
+
+    public function getLogout(){
+        Auth::logout();
+        return redirect()->route('index');
     }
 }

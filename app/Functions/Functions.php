@@ -112,7 +112,7 @@ function selectedOption($array,$select){
   }
 }
 //use for get from Models
-function getSelectForm($data,$select = 0){
+function getSelectForm($data, $select = 0){
   foreach($data as $value){
     $id = $value->id;
     $name = $value->name;
@@ -122,6 +122,28 @@ function getSelectForm($data,$select = 0){
       echo '<option  value="'.$id.'">'.$name.'</option>';
     }
   }
+}
+function getSelectArrayForm($data, $select){
+  foreach($data as $value){
+    $id = $value->id;
+    $name = $value->name;
+    if($select != null){
+      foreach($select as $item){
+        if($id == $item){
+          echo '<option  value="'.$id.'" selected>'.$name.' </option>';
+        }else{
+          echo '<option  value="'.$id.'">'.$name.'</option>';
+        }
+      }
+    }
+  }
+}
+
+function convertStrToArr($char, $str){
+  return explode($char, $str);
+}
+function convertArrToStr($char, $str){
+  return implode($char, $str);
 }
 
 function checkFolderImage(){

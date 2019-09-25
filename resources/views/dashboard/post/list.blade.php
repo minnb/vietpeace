@@ -15,9 +15,9 @@
             </small>
         </h1>
     </div>
+    @include('dashboard.layouts.alert')
 </div>
 <div class="page-content">
-    @include('dashboard.layouts.alert')
     <div class="row">
         <div class="col-xs-12">
             <div class="tabbable">
@@ -63,7 +63,7 @@
                                                 {{ $item->name }}
                                             </a>
                                         </td>
-                                        <td>{{ App\Models\Category::find($item->cate_id)->name }}</td>
+                                        <td>{{ App\Models\Category::getStrCateName($item->cate_id) }}</td>
                                         <td>{{ getStatus($item->status) }}</td>
                                         <td>
                                             <div class="hidden-sm hidden-xs action-buttons">

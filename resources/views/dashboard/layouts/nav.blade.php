@@ -21,11 +21,10 @@
                             <img class="nav-user-photo" src="{{ asset('public/dashboard/images/avatars/user.jpg') }}" alt="Jason's Photo" />
                             <span class="user-info">
                                 <small>Xin chào,</small>
+                                <small>{{Auth::user()->name}}</small>
                             </span>
-
                             <i class="ace-icon fa fa-caret-down"></i>
                         </a>
-
                         <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
                             <li>
                                 <a href="#">
@@ -33,18 +32,15 @@
                                     Settings
                                 </a>
                             </li>
-
                             <li>
                                 <a href="#">
                                     <i class="ace-icon fa fa-user"></i>
                                     Profile
                                 </a>
                             </li>
-
                             <li class="divider"></li>
-
                             <li>
-                                <a href="">
+                                <a href="{{ route('get.dashboard.auth.logout') }}">
                                     <i class="ace-icon fa fa-power-off"></i>
                                     Logout
                                 </a>

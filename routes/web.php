@@ -14,7 +14,7 @@ include('dashboard.php');
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('index');
 
 Auth::routes();
 
