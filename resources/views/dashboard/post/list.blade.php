@@ -46,7 +46,6 @@
                                         <th>Image</th>
                                         <th>Name</th>
                                         <th>Category</th>
-                                        <th>Ref</th>
                                         <th>Status</th>
                                         <th>
                                         </th>
@@ -65,7 +64,6 @@
                                             </a>
                                         </td>
                                         <td>{{ App\Models\Category::find($item->cate_id)->name }}</td>
-                                        <td>{{ $item->ref }}</td>
                                         <td>{{ getStatus($item->status) }}</td>
                                         <td>
                                             <div class="hidden-sm hidden-xs action-buttons">
