@@ -7,6 +7,11 @@ Use DB; use Auth;
 use App\Models\User;
 use App\Models\Post;
 use App\Models\Category;
+use App\Utils\Post_Full_Trip;
+use App\Utils\Post_Guide_Transport;
+use App\Utils\Post_Hotels;
+use App\Utils\Post_Meals;
+use App\Utils\Post_Trip_FAQ;
 class PostController extends Controller
 {
 	public function __construct()
@@ -26,6 +31,11 @@ class PostController extends Controller
     }
 
     public function postAdd(Request $request){
+        $Post_Full_Trip = new Post_Full_Trip();
+        $Post_Guide_Transport = new Post_Guide_Transport();
+        $Post_Hotels = new Post_Hotels();
+        $Post_Meals = new Post_Meals();
+        $Post_Trip_FAQ = new Post_Trip_FAQ();
         try{
             DB::beginTransaction();
                 $data = new Post();
@@ -38,6 +48,18 @@ class PostController extends Controller
                 $data->user_id = Auth::user()->id;
                 $data->viewed = 0;
                 $data->vote = 0;
+                $Post_Full_Trip->content = $request->content_full;
+                $Post_Guide_Transport->content = $request->content_guide;
+                $Post_Hotels->content = $request->content_hotel;
+                $Post_Meals->content = $request->content_meal;
+                $Post_Trip_FAQ->content = $request->content_trip_faq;
+
+                $data->full_trip = json_encode($Post_Full_Trip);
+                $data->guide_transport = json_encode($Post_Guide_Transport);
+                $data->hotels = json_encode($Post_Hotels);
+                $data->meals = json_encode($Post_Meals);
+                $data->trip_faq = json_encode($Post_Trip_FAQ);
+
                 if($request->file('fileImage')){
                     foreach(Input::file('fileImage') as $file ){
                         $destinationPath = checkFolderImage();
@@ -66,6 +88,11 @@ class PostController extends Controller
 
     public function postEdit(Request $request, $idd){
         $id = fdecrypt($idd);
+        $Post_Full_Trip = new Post_Full_Trip();
+        $Post_Guide_Transport = new Post_Guide_Transport();
+        $Post_Hotels = new Post_Hotels();
+        $Post_Meals = new Post_Meals();
+        $Post_Trip_FAQ = new Post_Trip_FAQ();
         try{
             DB::beginTransaction();
                 $data = Post::findOrFail($id);
@@ -78,6 +105,18 @@ class PostController extends Controller
                 $data->status = $request->status == 'on' ? 1 : 0;
                 $data->user_id = Auth::user()->id;
                 
+                $Post_Full_Trip->content = $request->content_full;
+                $Post_Guide_Transport->content = $request->content_guide;
+                $Post_Hotels->content = $request->content_hotel;
+                $Post_Meals->content = $request->content_meal;
+                $Post_Trip_FAQ->content = $request->content_trip_faq;
+                
+                $data->full_trip = json_encode($Post_Full_Trip);
+                $data->guide_transport = json_encode($Post_Guide_Transport);
+                $data->hotels = json_encode($Post_Hotels);
+                $data->meals = json_encode($Post_Meals);
+                $data->trip_faq = json_encode($Post_Trip_FAQ);
+
                 if($request->file('fileImage')){
                     foreach(Input::file('fileImage') as $file ){
                         $destinationPath = checkFolderImage();

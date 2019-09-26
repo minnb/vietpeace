@@ -128,7 +128,7 @@ class CateController extends Controller
         }
     }
 
-    public function postDel($idd){
+    public function postDel(Request $request, $idd){
         $id = fdecrypt($idd);
         try{
             DB::beginTransaction();

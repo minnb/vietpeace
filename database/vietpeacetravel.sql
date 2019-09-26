@@ -1,10 +1,10 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 03, 2019 lúc 05:18 PM
--- Phiên bản máy phục vụ: 10.1.36-MariaDB
+-- Máy chủ: 10.220.52.253:3306
+-- Thời gian đã tạo: Th9 26, 2019 lúc 10:30 AM
+-- Phiên bản máy phục vụ: 5.7.19
 -- Phiên bản PHP: 7.2.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -59,7 +59,6 @@ INSERT INTO `categories` (`id`, `type`, `parent`, `name`, `alias`, `description`
 (8, 2, 2, 'Lao Tours', 'lao', NULL, NULL, NULL, 0, 2, 1, 1, '2019-04-27 00:40:24', '2019-05-02 14:53:33'),
 (9, 0, 1, 'Cambodia Destinations', 'cambodia-destinations', 'test', NULL, NULL, 0, 3, 1, 1, '2019-05-02 14:54:10', '2019-05-03 14:06:16'),
 (10, 0, 0, 'Hotels', 'hotels', NULL, NULL, NULL, 3, 5, 1, 1, '2019-05-03 13:36:39', '2019-05-03 13:36:39'),
-(11, 1, 4, 'Binh Minh', 'binh-minh', NULL, '', NULL, 0, 0, 1, 1, '2019-05-03 14:28:37', '2019-05-03 14:28:37'),
 (12, 1, 4, 'Hội An', 'hoi-an', NULL, '', NULL, 0, 0, 1, 1, '2019-05-03 14:41:31', '2019-05-03 14:59:06'),
 (13, 1, 4, 'Hà Nội', 'ha-noi', NULL, '', NULL, 0, 0, 1, 1, '2019-05-03 14:42:42', '2019-05-03 14:59:43'),
 (14, 0, 2, 'Cambodia', 'cambodia', NULL, '', NULL, 0, 0, 1, 1, '2019-05-03 15:04:50', '2019-05-03 15:04:50'),
@@ -118,11 +117,18 @@ CREATE TABLE `migrations` (
 CREATE TABLE `posts` (
   `id` bigint(20) NOT NULL,
   `cate_id` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
-  `name` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
+  `name` tinytext COLLATE utf8_unicode_ci NOT NULL,
   `alias` varchar(191) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `day_number` smallint(5) DEFAULT '0',
+  `unit_price` decimal(10,2) DEFAULT '0.00',
   `description` text COLLATE utf8_unicode_ci,
-  `conntent` longtext COLLATE utf8_unicode_ci,
-  `image` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `content` longtext COLLATE utf8_unicode_ci,
+  `full_trip` json DEFAULT NULL,
+  `trip_faq` json DEFAULT NULL,
+  `hotels` json DEFAULT NULL,
+  `guide_transport` json DEFAULT NULL,
+  `meals` json DEFAULT NULL,
+  `image` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
   `tags` varchar(191) COLLATE utf8_unicode_ci DEFAULT NULL,
   `viewed` mediumint(9) NOT NULL,
   `vote` mediumint(9) NOT NULL,
@@ -131,6 +137,16 @@ CREATE TABLE `posts` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `posts`
+--
+
+INSERT INTO `posts` (`id`, `cate_id`, `name`, `alias`, `day_number`, `unit_price`, `description`, `content`, `full_trip`, `trip_faq`, `hotels`, `guide_transport`, `meals`, `image`, `tags`, `viewed`, `vote`, `status`, `user_id`, `created_at`, `updated_at`) VALUES
+(1, '6|9', 'test 1', 'test-1', NULL, '0.00', '<p>test</p>', '<p>test</p>', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 1, 1, '2019-09-25 03:54:17', '2019-09-25 04:44:22'),
+(2, '6|9', 'test', 'test', NULL, '0.00', NULL, '<p>test</p>', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 1, 1, '2019-09-25 04:25:00', '2019-09-25 04:25:00'),
+(3, '6', 'minhnb', 'minhnb', 0, '0.00', NULL, NULL, '{\"content\": \"<p>test</p>\"}', NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 1, 1, '2019-09-26 05:08:12', '2019-09-26 05:08:12'),
+(4, '6', 'admin', 'admin', 0, '0.00', '<p>test</p>', '<p>test</p>', '{\"content\": \"<p>itinerary</p>\"}', '{\"content\": \"<p>test trip faq</p>\"}', '{\"content\": \"<p>hotels</p>\"}', '{\"content\": \"<p>guide</p>\"}', '{\"content\": \"<p>meals</p>\"}', NULL, NULL, 0, 0, 1, 1, '2019-09-26 05:18:59', '2019-09-26 05:32:13');
 
 -- --------------------------------------------------------
 
@@ -198,7 +214,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Binh Minh', 'minhnb.it@gmail.com', NULL, '$2y$10$HM9EuFScf/dCcwzscmeiG.CEW7QxwQ67a07Geo5L3qkelhxh7Mz.O', NULL, '2019-04-22 06:46:05', '2019-04-22 06:46:05');
+(1, 'Binh Minh', 'minhnb.it@gmail.com', NULL, '$2y$10$j.DBpGEVvmJnjVfz7WhC1eq81efPWM3gkpZQ4QFfMZq1e/m/SGsfq', 'h1V4ryAtC6hs6vwirVp2Jjb3rrFjlJs4b6K1xAEH4IiH5yYOdm1v3WCdzkSN', '2019-04-22 06:46:05', '2019-04-22 06:46:05');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -272,7 +288,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT cho bảng `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `roles`
