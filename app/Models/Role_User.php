@@ -5,7 +5,7 @@ use DB;
 class Role_User extends Model
 {
     protected $table ="role_user";
-     protected $fillable = [
+    protected $fillable = [
         'role_id', 'user_id'
     ];
 

@@ -23,6 +23,15 @@ Route::group(['prefix'=> 'dashboard'], function(){
 
 	});
 
+	Route::group(['prefix'=> 'user'], function(){
+		Route::get('list', ['as'=>'get.dashboard.user.list','uses'=>'Dashboard\UserController@getList']);
+		Route::get('add', ['as'=>'get.dashboard.user.add','uses'=>'Dashboard\UserController@getAdd']);
+		Route::post('add', ['as'=>'post.dashboard.user.add','uses'=>'Dashboard\UserController@postAdd']);
+		Route::get('edit/{id}', ['as'=>'get.dashboard.user.edit','uses'=>'Dashboard\UserController@getEdit']);
+		Route::post('edit/{id}', ['as'=>'post.dashboard.user.edit','uses'=>'Dashboard\UserController@postEdit']);
+		Route::get('del/{id}', ['as'=>'get.dashboard.user.del','uses'=>'Dashboard\UserController@postDel']);
+
+	});
 
 
 });

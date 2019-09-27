@@ -3,6 +3,7 @@
 @section('page_header', 'Add Tour')
 @section('stylesheet')  
     <link type="text/css" rel="stylesheet" href="{{ asset('public/dashboard/css/select2.min.css') }}" />
+    <link type="text/css" rel="stylesheet" href="{{ asset('public/dashboard/css/dropzone.min.css') }}" />
 @endsection
 @section('content')
 <div class="page-content">
@@ -52,6 +53,11 @@
                     <li>
                         <a data-toggle="tab" href="#meal">
                             <i class="ace-icon fa fa-cutlery bigger-120"></i> MEALS
+                        </a>
+                    </li>
+                    <li>
+                        <a data-toggle="tab" href="#gallery">
+                            <i class="ace-icon fa fa-camera bigger-120"></i> GALLERY
                         </a>
                     </li>
                 </ul>
@@ -139,6 +145,13 @@
                             <div class="col-xs-12">
                                 <textarea name="content_meal" id="content_meal" rows="10" class="col-xs-10 col-sm-5">{{ old('content_meal')}}</textarea>
                             </div>
+                        </div>
+                    </div>
+                    <div id="gallery" class="tab-pane fade">
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                
+                            </div><!-- /.col -->
                         </div>
                     </div>
                 </div>
@@ -231,6 +244,5 @@
         $('.rating').raty('destroy');
         $('.multiselect').multiselect('destroy');
     });
-
 </script>
 @endsection

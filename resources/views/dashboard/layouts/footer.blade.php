@@ -29,10 +29,17 @@
     <script src="{{asset('public/dashboard/js/moment.min.js') }}"></script>
     <script src="{{asset('public/dashboard/js/daterangepicker.min.js') }}"></script>
     <script src="{{asset('public/dashboard/js/bootstrap-datetimepicker.min.js') }}"></script>
-    @yield('javascript')
     <script src="{{asset('public/dashboard/js/ace-elements.min.js') }}"></script>
     <script src="{{asset('public/dashboard/js/ace.min.js') }}"></script>
     <script src="{{asset('public/js/script.js') }}"></script>
+    <script type="text/javascript">
+        $(function () {
+            var url = window.location.href.substr(window.location.href.lastIndexOf("/") + 1);
+            $('[href$="' + url + '"]').parent().addClass("active");
+            $('[href$="' + url + '"]').closest('li.sub-parent').addClass("open");
+        });
+    </script>
+    @yield('javascript')
 </body>
 </html>
 

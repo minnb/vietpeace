@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 10.220.52.253:3306
--- Thời gian đã tạo: Th9 26, 2019 lúc 10:30 AM
+-- Thời gian đã tạo: Th9 27, 2019 lúc 11:00 AM
 -- Phiên bản máy phục vụ: 5.7.19
 -- Phiên bản PHP: 7.2.11
 
@@ -128,6 +128,7 @@ CREATE TABLE `posts` (
   `hotels` json DEFAULT NULL,
   `guide_transport` json DEFAULT NULL,
   `meals` json DEFAULT NULL,
+  `gallery` json DEFAULT NULL,
   `image` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
   `tags` varchar(191) COLLATE utf8_unicode_ci DEFAULT NULL,
   `viewed` mediumint(9) NOT NULL,
@@ -142,11 +143,11 @@ CREATE TABLE `posts` (
 -- Đang đổ dữ liệu cho bảng `posts`
 --
 
-INSERT INTO `posts` (`id`, `cate_id`, `name`, `alias`, `day_number`, `unit_price`, `description`, `content`, `full_trip`, `trip_faq`, `hotels`, `guide_transport`, `meals`, `image`, `tags`, `viewed`, `vote`, `status`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, '6|9', 'test 1', 'test-1', NULL, '0.00', '<p>test</p>', '<p>test</p>', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 1, 1, '2019-09-25 03:54:17', '2019-09-25 04:44:22'),
-(2, '6|9', 'test', 'test', NULL, '0.00', NULL, '<p>test</p>', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 1, 1, '2019-09-25 04:25:00', '2019-09-25 04:25:00'),
-(3, '6', 'minhnb', 'minhnb', 0, '0.00', NULL, NULL, '{\"content\": \"<p>test</p>\"}', NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 1, 1, '2019-09-26 05:08:12', '2019-09-26 05:08:12'),
-(4, '6', 'admin', 'admin', 0, '0.00', '<p>test</p>', '<p>test</p>', '{\"content\": \"<p>itinerary</p>\"}', '{\"content\": \"<p>test trip faq</p>\"}', '{\"content\": \"<p>hotels</p>\"}', '{\"content\": \"<p>guide</p>\"}', '{\"content\": \"<p>meals</p>\"}', NULL, NULL, 0, 0, 1, 1, '2019-09-26 05:18:59', '2019-09-26 05:32:13');
+INSERT INTO `posts` (`id`, `cate_id`, `name`, `alias`, `day_number`, `unit_price`, `description`, `content`, `full_trip`, `trip_faq`, `hotels`, `guide_transport`, `meals`, `gallery`, `image`, `tags`, `viewed`, `vote`, `status`, `user_id`, `created_at`, `updated_at`) VALUES
+(1, '6|9', 'test 1', 'test-1', NULL, '0.00', '<p>test</p>', '<p>test</p>', '{\"content\": null}', '{\"content\": null}', '{\"content\": null}', '{\"content\": null}', '{\"content\": null}', NULL, 'public/uploads/images/201909/Wk1nTaVLTC.jpg', NULL, 0, 0, 1, 1, '2019-09-25 03:54:17', '2019-09-27 04:39:35'),
+(2, '6|9', 'test', 'test', NULL, '0.00', NULL, '<p>test</p>', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 1, 1, '2019-09-25 04:25:00', '2019-09-25 04:25:00'),
+(3, '6', 'minhnb', 'minhnb', 0, '0.00', NULL, NULL, '{\"content\": \"<p>test</p>\"}', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 1, 1, '2019-09-26 05:08:12', '2019-09-26 05:08:12'),
+(4, '6', 'admin', 'admin', 0, '0.00', '<p>test</p>', '<p>test</p>', '{\"content\": \"<p>itinerary</p>\"}', '{\"content\": \"<p>test trip faq</p>\"}', '{\"content\": \"<p>hotels</p>\"}', '{\"content\": \"<p>guide</p>\"}', '{\"content\": \"<p>meals</p>\"}', NULL, NULL, NULL, 0, 0, 1, 1, '2019-09-26 05:18:59', '2019-09-26 05:32:13');
 
 -- --------------------------------------------------------
 
@@ -190,7 +191,8 @@ CREATE TABLE `role_user` (
 --
 
 INSERT INTO `role_user` (`id`, `role_id`, `user_id`, `created_at`, `updated_at`) VALUES
-(7, 1, 1, '2019-04-22 13:52:24', '2018-12-18 06:26:29');
+(7, 1, 1, '2019-04-22 13:52:24', '2018-12-18 06:26:29'),
+(8, 3, 4, '2019-09-27 10:15:04', '2019-09-27 10:15:04');
 
 -- --------------------------------------------------------
 
@@ -205,6 +207,7 @@ CREATE TABLE `users` (
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `blocked` tinyint(4) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -213,8 +216,9 @@ CREATE TABLE `users` (
 -- Đang đổ dữ liệu cho bảng `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Binh Minh', 'minhnb.it@gmail.com', NULL, '$2y$10$j.DBpGEVvmJnjVfz7WhC1eq81efPWM3gkpZQ4QFfMZq1e/m/SGsfq', 'h1V4ryAtC6hs6vwirVp2Jjb3rrFjlJs4b6K1xAEH4IiH5yYOdm1v3WCdzkSN', '2019-04-22 06:46:05', '2019-04-22 06:46:05');
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `blocked`, `created_at`, `updated_at`) VALUES
+(1, 'Binh Minh', 'minhnb.it@gmail.com', NULL, '$2y$10$j.DBpGEVvmJnjVfz7WhC1eq81efPWM3gkpZQ4QFfMZq1e/m/SGsfq', 'h1V4ryAtC6hs6vwirVp2Jjb3rrFjlJs4b6K1xAEH4IiH5yYOdm1v3WCdzkSN', 1, '2019-04-22 06:46:05', '2019-04-22 06:46:05'),
+(4, 'minhnb', 'abc@gmail.com', NULL, '$2y$10$pcTnPGrZ2BTiS2iAwHvAe.kj7It2gyGb2cGhGsZtKI/h5OqWvBycq', NULL, 0, '2019-09-27 10:15:04', '2019-09-27 10:15:04');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -300,13 +304,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT cho bảng `role_user`
 --
 ALTER TABLE `role_user`
-  MODIFY `id` tinyint(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` tinyint(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

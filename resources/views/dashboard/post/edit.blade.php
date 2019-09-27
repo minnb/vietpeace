@@ -106,7 +106,15 @@
                                     <input type="file" id="id-input-file-2" name="fileImage[]">
                                 </label>
                             </div>
+                        </div>
+                        @if($data['image'] != '')
+                        <div class="form-group">
+                            <label class="col-xs-2 control-label no-padding-right"></label>
+                            <div class="col-xs-4">
+                                <img src="{{asset($data['image'])}}" style="width: 50%;">
+                            </div>
                         </div>  
+                        @endif
                     </div>
                     <div id="full" class="tab-pane fade">
                         <div class="form-group">

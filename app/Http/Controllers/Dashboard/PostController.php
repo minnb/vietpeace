@@ -12,6 +12,7 @@ use App\Utils\Post_Guide_Transport;
 use App\Utils\Post_Hotels;
 use App\Utils\Post_Meals;
 use App\Utils\Post_Trip_FAQ;
+use App\Utils\Post_Gallery;
 class PostController extends Controller
 {
 	public function __construct()
@@ -36,6 +37,7 @@ class PostController extends Controller
         $Post_Hotels = new Post_Hotels();
         $Post_Meals = new Post_Meals();
         $Post_Trip_FAQ = new Post_Trip_FAQ();
+        $Post_Gallery = new Post_Gallery();
         try{
             DB::beginTransaction();
                 $data = new Post();
@@ -77,7 +79,6 @@ class PostController extends Controller
             DB::rollBack();
             return back()->withErrors($e->getMessage())->withInput($request->input());
         }
-        
     }
 
     public function getEdit($idd){
