@@ -35,7 +35,7 @@ class PostController extends Controller
         $Post_Full_Trip = new Post_Full_Trip();
         $Post_Guide_Transport = new Post_Guide_Transport();
         $Post_Hotels = new Post_Hotels();
-        $Post_Meals = new Post_Meals();
+        $Post_Meals = new Post_Meals(); 
         $Post_Trip_FAQ = new Post_Trip_FAQ();
         $Post_Gallery = new Post_Gallery();
         try{
@@ -74,7 +74,7 @@ class PostController extends Controller
                 }
                 $data->save();
             DB::commit();
-            return redirect()->route('get.dashboard.post.list')->with(['flash_message'=>'Tạo mới thành công']);
+            return redirect()->route('get.dashboard.post.list')->with(['flash_message'=>'Created data successfully']);
          }catch (\Exception $e) {
             DB::rollBack();
             return back()->withErrors($e->getMessage())->withInput($request->input());
@@ -133,7 +133,7 @@ class PostController extends Controller
                 $data->save();
 
             DB::commit();
-            return redirect()->route('get.dashboard.post.list')->with(['flash_message'=>'Chỉnh sửa dữ liệu thành công']);
+            return redirect()->route('get.dashboard.post.list')->with(['flash_message'=>'Edited data successfully']);
          }catch (\Exception $e) {
             DB::rollBack();
             return back()->withErrors($e->getMessage())->withInput($request->input());
@@ -146,7 +146,7 @@ class PostController extends Controller
             DB::beginTransaction();
                 DB::table('posts')->where('id', $id)->update(['status'=>0]);
             DB::commit();
-            return redirect()->route('get.dashboard.post.list')->with(['flash_message'=>'Chỉnh sửa dữ liệu thành công']);
+            return redirect()->route('get.dashboard.post.list')->with(['flash_message'=>'Edited data successfully']);
          }catch (\Exception $e) {
             DB::rollBack();
             return back()->withErrors($e->getMessage())->withInput($request->input());
@@ -159,7 +159,7 @@ class PostController extends Controller
             DB::beginTransaction();
                 DB::table('posts')->where('id', $id)->delete();
             DB::commit();
-            return redirect()->route('get.dashboard.post.list')->with(['flash_message'=>'Xóa sửa dữ liệu thành công']);
+            return redirect()->route('get.dashboard.post.list')->with(['flash_message'=>'Deleted data successfully']);
          }catch (\Exception $e) {
             DB::rollBack();
             return back()->withErrors($e->getMessage())->withInput($request->input());

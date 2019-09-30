@@ -46,27 +46,28 @@
                         <div class="form-group">
                             <label class="col-xs-2 control-label no-padding-right" for="form-field-1"> Email </label>
                             <div class="col-xs-10">
-                                <input type="email" id="form-field-1" class="col-xs-10 col-sm-5" name="email" required="" value="{{ old('email', isset($data) ? $data['email'] : '') }}" />
+                                <input type="email" id="form-field-1" class="col-xs-10 col-sm-5" name="email" readonly="" value="{{ old('email', isset($data) ? $data['email'] : '') }}" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-2 control-label no-padding-right" for="form-field-1"> Password </label>
                             <div class="col-xs-10">
-                                <input type="password" id="form-field-1" class="col-xs-10 col-sm-5" name="password" required="" value="{{ old('password') }}" />
+                                <input type="password" id="form-field-1" class="col-xs-10 col-sm-5" name="password" value="{{ old('password') }}" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-xs-2 control-label no-padding-right"> Status </label>
-                            <div class="col-xs-9">
-                                <input name="status" class="ace ace-switch ace-switch-4 btn-rotate" type="checkbox"/>
-                                @if($data['blocked'] == 1) <span class="lbl"></span> @else <span class="lbl"></span>  @endif
+                            <label class="col-xs-2 control-label no-padding-right" for="form-field-1"> Status </label>
+                            <div class="col-xs-10">
+                                <select name="status" class="col-xs-10 col-sm-5">
+                                    {!! selectedOption(getArrayStatus(), old('status', $data['blocked'])) !!}
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-2 control-label no-padding-right" for="form-field-1"> Role </label>
                             <div class="col-xs-10">
                                 <select name="role" class="col-xs-10 col-sm-5">
-                                    {!! getSelectForm(App\Models\Role::getRoleSelect(), App\Models\Role_User::getRoleIdFromUserId($id)) !!}
+                                    {!! getSelectForm(App\Models\Role::getRoleSelect(), old('role', App\Models\Role_User::getRoleIdFromUserId($id))) !!}
                                 </select>
                             </div>
                         </div>

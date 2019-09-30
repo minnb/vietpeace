@@ -50,7 +50,7 @@ class UserController extends Controller
                     $role_user->role_id = $request->role;
                     $role_user->save();
             DB::commit();
-            return redirect()->route('get.dashboard.user.list')->with(['flash_message'=>'Tạo mới thành công']);
+            return redirect()->route('get.dashboard.user.list')->with(['flash_message'=>'Created data successfully']);
          }catch (\Exception $e) {
             DB::rollBack();
             return back()->withErrors($e->getMessage())->withInput($request->input());
@@ -65,8 +65,36 @@ class UserController extends Controller
     public function postEdit(Request $request, $idd)
     {
         $id = fdecrypt($idd);
-        $data = User::get();
-        
+         try{
+            if($request->password == ''){
+                $validator = Validator::make($request->all(), [
+                    'name' => 'required|string|max:191'
+                ]);
+            }else{
+                $validator = Validator::make($request->all(), [
+                    'name' => 'required|string|max:191',
+                    'password' => 'min:6',
+                ]);
+            }
+           
+            if ($validator->fails()) {
+                return back()->withErrors($validator)->withInput($request->input());
+            }
+            DB::beginTransaction();
+                $data = User::findOrFail($id);
+                $data->name = $request->name;
+                if($request->password != ''){
+                    $data->password = Hash::make($request->password);
+                }
+                $data->blocked = $request->status;
+                $data->save();
+                Role_User::where('user_id',$data->id)->update(['role_id'=>$request->role]);
+            DB::commit();
+            return redirect()->route('get.dashboard.user.list')->with(['flash_message'=>'Edited data successfully']);
+         }catch (\Exception $e) {
+            DB::rollBack();
+            return back()->withErrors($e->getMessage())->withInput($request->input());
+        }
     }
     public function postDel(Request $request, $idd)
     {
@@ -75,7 +103,7 @@ class UserController extends Controller
             DB::beginTransaction();
                 DB::table('users')->where('id', $id)->delete();
             DB::commit();
-            return redirect()->route('get.dashboard.user.list')->with(['flash_message'=>'Xóa sửa dữ liệu thành công']);
+            return redirect()->route('get.dashboard.user.list')->with(['flash_message'=>'Deleted data successfully']);
          }catch (\Exception $e) {
             DB::rollBack();
             return back()->withErrors($e->getMessage())->withInput($request->input());

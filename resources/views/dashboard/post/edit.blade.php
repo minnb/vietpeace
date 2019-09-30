@@ -54,6 +54,11 @@
                             <i class="ace-icon fa fa-cutlery bigger-120"></i> MEALS
                         </a>
                     </li>
+                    <li>
+                        <a data-toggle="tab" href="#gallery">
+                            <i class="ace-icon fa fa-camera bigger-120"></i> GALLERY
+                        </a>
+                    </li>
                 </ul>
                 <div class="tab-content">
                     <div id="add" class="tab-pane fade in active">
@@ -156,6 +161,13 @@
                             </div>
                         </div>
                     </div>
+                    <div id="gallery" class="tab-pane fade">
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -171,9 +183,9 @@
                         Reset
                     </a>
                     &nbsp; &nbsp; &nbsp;
-                    <button class="btn btn-success" href="{{route('get.dashboard.post.list')}}">
+                    <a class="btn btn-success" href="{{route('get.dashboard.post.list')}}">
                         <i class="ace-icon fa fa-list bigger-120"></i> List Tours
-                    </button>
+                    </a>
                 </div>
             </div>
             </form>

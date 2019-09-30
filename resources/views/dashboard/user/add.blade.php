@@ -29,7 +29,7 @@
                             <i class="red ace-icon fa fa-home bigger-120"></i> Add User
                         </a>
                     </li>
-                     <li>
+                    <li>
                         <a href="{{route('get.dashboard.user.list')}}">
                             <i class="red ace-icon fa fa-plus bigger-120"></i> List User
                         </a>
@@ -40,13 +40,13 @@
                         <div class="form-group">
                             <label class="col-xs-2 control-label no-padding-right" for="form-field-1"> Full Name </label>
                             <div class="col-xs-10">
-                                <input type="text" id="form-field-1" class="col-xs-10 col-sm-5" name="name" required="" value="{{ old('name') }}" />
+                                <input type="text" id="form-field-1" class="col-xs-10 col-sm-5" name="name" required="" value="{{ old('name') }}" placeholder="" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-2 control-label no-padding-right" for="form-field-1"> Email </label>
                             <div class="col-xs-10">
-                                <input type="email" id="form-field-1" class="col-xs-10 col-sm-5" name="email" required="" value="{{ old('email') }}" />
+                                <input type="email" id="form-field-1" class="col-xs-10 col-sm-5" name="email" required="" value="{{ old('email') }}" placeholder="" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -58,7 +58,7 @@
                         <div class="form-group">
                             <label class="col-xs-2 control-label no-padding-right"> Status </label>
                             <div class="col-xs-9">
-                                <input name="status" class="ace ace-switch ace-switch-4 btn-rotate" type="checkbox"/>
+                                <input name="status" class="ace ace-switch ace-switch-4 btn-rotate" type="checkbox" checked="true" />
                                 <span class="lbl"></span>
                             </div>
                         </div>

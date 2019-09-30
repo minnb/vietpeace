@@ -2,7 +2,7 @@
 @section('title', 'Tour')
 @section('page_header', 'List Tour')
 @section('stylesheet')  
-    <link rel="stylesheet" href="#" />
+    
 @endsection
 @section('content')
 <div class="page-content">

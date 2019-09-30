@@ -3,7 +3,7 @@
 @section('page_header', 'Add Tour')
 @section('stylesheet')  
     <link type="text/css" rel="stylesheet" href="{{ asset('public/dashboard/css/select2.min.css') }}" />
-    <link type="text/css" rel="stylesheet" href="{{ asset('public/dashboard/css/dropzone.min.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/dashboard/plugin/jquery.filer/css/jquery.filer.css') }}"/>
 @endsection
 @section('content')
 <div class="page-content">
@@ -150,7 +150,7 @@
                     <div id="gallery" class="tab-pane fade">
                         <div class="form-group">
                             <div class="col-xs-12">
-                                
+                                <input class="form-control" type="file" name="fileImage[]" id="filer_image_gallery" multiple="multiple">
                             </div><!-- /.col -->
                         </div>
                     </div>
@@ -169,9 +169,9 @@
                         Reset
                     </a>
                     &nbsp; &nbsp; &nbsp;
-                    <button class="btn btn-success" href="{{route('get.dashboard.post.list')}}">
+                    <a class="btn btn-success" href="{{route('get.dashboard.post.list')}}">
                         <i class="ace-icon fa fa-list bigger-120"></i> List Tours
-                    </button>
+                    </a>
                 </div>
             </div>
             </form>
@@ -188,6 +188,7 @@
 <script src="{{asset('public/dashboard/js/jquery.ui.touch-punch.min.js') }}"></script>
 <script src="{{asset('public/dashboard/js/bootbox.js') }}"></script>
 <script src="{{asset('public/dashboard/js/bootstrap-multiselect.min.js') }}"></script>
+<script src="{{asset('public/dashboard/plugin/jquery.filer/js/jquery.filer.min.js') }}"></script>
 <script type="text/javascript">
     jQuery(document).ready(function(){
         $('#id-input-file-1 , #id-input-file-2').ace_file_input({
@@ -243,6 +244,19 @@
         $('select[name="duallistbox_demo1[]"]').bootstrapDualListbox('destroy');
         $('.rating').raty('destroy');
         $('.multiselect').multiselect('destroy');
+    });
+</script>
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        'use-strict';
+        $('#filer_image_gallery').filer({
+            limit: 3,
+            maxSize: 3,
+            extensions: ['jpg', 'jpeg', 'png', 'gif', 'psd'],
+            changeInput: true,
+            showThumbs: true,
+            addMore: true
+        });
     });
 </script>
 @endsection
