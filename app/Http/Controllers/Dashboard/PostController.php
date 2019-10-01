@@ -37,7 +37,6 @@ class PostController extends Controller
         $Post_Hotels = new Post_Hotels();
         $Post_Meals = new Post_Meals(); 
         $Post_Trip_FAQ = new Post_Trip_FAQ();
-        $Post_Gallery = new Post_Gallery();
         try{
             DB::beginTransaction();
                 $data = new Post();
@@ -72,6 +71,22 @@ class PostController extends Controller
                         }
                     }
                 }
+
+                if($request->file('galleryImage')){
+                    $Post_Gallery = new Post_Gallery();
+                    $galleryArr = [];
+                    foreach(Input::file('galleryImage') as $file ){
+                        $destinationPath = checkFolderImage();
+                        if(isset($file)){
+                            $file_name = randomString().'.'.$file->getClientOriginalExtension();
+                            array_push($galleryArr,$destinationPath.'/'.$file_name);
+                            $file->move($destinationPath, $file_name);
+                        }
+                    }
+                    $Post_Gallery->arr_images = $galleryArr;
+                    $data->gallery = json_encode($Post_Gallery);
+                }
+
                 $data->save();
             DB::commit();
             return redirect()->route('get.dashboard.post.list')->with(['flash_message'=>'Created data successfully']);
@@ -84,7 +99,8 @@ class PostController extends Controller
     public function getEdit($idd){
         $id = fdecrypt($idd);
         $data = Post::findOrFail($id);
-        return view('dashboard.post.edit', compact('data', 'id'));
+        $galleryImg = json_decode($data['gallery'],true)['arr_images']; 
+        return view('dashboard.post.edit', compact('data', 'id','galleryImg'));
     }
 
     public function postEdit(Request $request, $idd){
@@ -104,8 +120,9 @@ class PostController extends Controller
                 $data->description = $request->description;
                 $data->content = $request->content;
                 $data->status = $request->status == 'on' ? 1 : 0;
+                $data->day_number = $request->day_number;
+                $data->unit_price = $request->unit_price;
                 $data->user_id = Auth::user()->id;
-                
                 $Post_Full_Trip->content = $request->content_full;
                 $Post_Guide_Transport->content = $request->content_guide;
                 $Post_Hotels->content = $request->content_hotel;
@@ -128,6 +145,26 @@ class PostController extends Controller
                             delete_image_no_path($old_img);
                         }
                     }
+                }
+
+                if($request->file('galleryImage')){
+                    $Post_Gallery = new Post_Gallery();
+                    $galleryArr = [];
+                    foreach(Input::file('galleryImage') as $file ){
+                        $destinationPath = checkFolderImage();
+                        if(isset($file)){
+                            $file_name = randomString().'.'.$file->getClientOriginalExtension();
+                            array_push($galleryArr,$destinationPath.'/'.$file_name);
+                            $file->move($destinationPath, $file_name);
+                        }
+                    }
+                    if(isset($data->gallery)){
+                        $Post_Gallery->arr_images = array_merge(json_decode($data->gallery,true)['arr_images'], $galleryArr);
+                    }else{
+                        $Post_Gallery->arr_images = $galleryArr;
+                    }
+                    
+                    $data->gallery = json_encode($Post_Gallery);
                 }
 
                 $data->save();

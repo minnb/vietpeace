@@ -1,7 +1,8 @@
 @extends('dashboard.app')
-@section('title', 'Categories')
-@section('page_header', 'List Category')
+@section('title', 'Functions')
+@section('page_header', 'List Functions')
 @section('stylesheet')  
+    <link type="text/css" rel="stylesheet" href="{{ asset('dashboard/css/jquery-ui.min.css') }}" />
 @endsection
 @section('content')
 <div class="page-content">
@@ -23,12 +24,12 @@
                 <ul class="nav nav-tabs" id="myTab">
                     <li class="active">
                         <a data-toggle="tab" href="#add">
-                            <i class="green ace-icon fa fa-list bigger-120"></i> List {{$name}}
+                            <i class="green ace-icon fa fa-list bigger-120"></i> List Functions
                         </a>
                     </li>
                     <li>
-                        <a href="{{route('get.dashboard.category.add', ['name'=>makeUnicode($name)])}}">
-                            <i class="red ace-icon fa fa-plus bigger-120"></i> Add {{$name}}
+                        <a href="{{route('get.dashboard.function.add')}}">
+                            <i class="red ace-icon fa fa-plus bigger-120"></i> Add Function
                         </a>
                     </li>
                 </ul>
@@ -43,35 +44,53 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Name</th>
+                                        <th>Url</th>
+                                        <th>Param</th>
                                         <th>Parent</th>
-                                        <th>Image</th>
                                         <th>Sort</th>
+                                        <th>ClassCSS</th>
+                                        <th>Permissions</th>
                                         <th>Status</th>
-                                        <th>
-                                        </th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @if(isset($data))
                                     @foreach($data as $key=>$item)
                                     <tr>
                                         <td>{{ $key+1 }}</td>
                                         <td>
-                                            <a href="{{ route('get.dashboard.category.edit', ['name'=>makeUnicode($name),'id'=>fencrypt($item->id)])}}">
+                                            <a href="{{ route('get.dashboard.function.edit', ['id'=>fencrypt($item->id)])}}">
                                                 {{ $item->name }}
                                             </a>
                                         </td>
-                                        <td>{{ App\Models\Category::getParentName($item->parent) }}</td>
                                         <td>
-                                            
+                                            <a href="{{ route('get.dashboard.function.edit', ['id'=>fencrypt($item->id)])}}">
+                                                {{ $item->url }}
+                                            </a>
                                         </td>
+                                        <td>{{ $item->param }}</td>
+                                        <td>{{ App\Models\Functions::getParentName($item->parent) }}</td>
                                         <td>{{ $item->sort }}</td>
-                                        <td>{{ getStatus($item->status) }}</td>
+                                        <td>{{ $item->class }}</td>
+                                        <td style="text-align:right">
+                                            {{ App\Models\Permissions::getRoleByFunction($item->id) }} 
+                                            <a href="#" id="id-btn-dialog1" class="btn btn-purple btn-sm">Add</a>
+                                            <div id="dialog-message" class="hide">
+                                                <div class="hr hr-12 hr-double"></div>
+                                                <p>
+                                                    Currently using
+                                                    <b>36% of your storage space</b>.
+                                                </p>
+                                            </div>
+                                        </td>
+                                        <td>{{ getStatus($item->blocked) }}</td>
                                         <td>
                                             <div class="hidden-sm hidden-xs action-buttons">
-                                                <a class="green" href="{{ route('get.dashboard.category.edit', ['name'=>makeUnicode($name), 'id'=>($item->id)])}}">
+                                                <a class="green" href="{{ route('get.dashboard.function.edit', ['id'=>fencrypt($item->id)])}}">
                                                     <i class="ace-icon fa fa-pencil-square-o bigger-130"></i> Edit
                                                 </a>&nbsp; &nbsp; 
-                                                <a class="red" href="{{ route('get.dashboard.category.del', ['id'=>fencrypt($item->id)])}}" onclick="return alertDelete();">
+                                                <a class="red" href="{{ route('get.dashboard.function.del', ['id'=>fencrypt($item->id)])}}" onclick="return alertDelete();">
                                                     <i class="ace-icon fa fa-trash-o bigger-130"></i> Delete
                                                 </a>
                                             </div>
@@ -80,14 +99,14 @@
                                                 <div class="inline pos-rel">
                                                     <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
                                                         <li>
-                                                            <a href="{{ route('get.dashboard.category.edit', ['name'=>makeUnicode($name), 'id'=>($item->id)])}}">
+                                                            <a href="{{ route('get.dashboard.function.edit', ['id'=>fencrypt($item->id)])}}">
                                                                 <span class="red">
                                                                     <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
                                                                 </span>
                                                             </a>
                                                         </li>
                                                         <li>
-                                                            <a href="{{ route('get.dashboard.category.del', ['id'=>fencrypt($item->id)])}}" onclick="return alertDelete();">
+                                                            <a href="{{ route('get.dashboard.function.del', ['id'=>fencrypt($item->id)])}}" onclick="return alertDelete();">
                                                                 <span class="red">
                                                                     <i class="ace-icon fa fa-trash-o bigger-120"></i>
                                                                 </span>
@@ -99,6 +118,7 @@
                                         </td>
                                     </tr>
                                     @endforeach
+                                    @endif
                                 </tbody>
                             </table>
                         </div>
@@ -191,6 +211,7 @@
                     $('.dt-button-info').addClass('gritter-item-wrapper gritter-info gritter-center white');
                 });
                 
+                
                 var defaultColvisAction = myTable.button(0).action();
                 myTable.button(0).action(function (e, dt, button, config) {
                     
@@ -246,12 +267,14 @@
                     else myTable.row(row).select();
                 });
             
+            
                 $(document).on('click', '#dynamic-table .dropdown-toggle', function(e) {
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
                 });
                 
+               
                 //And for the first simple table, which doesn't have TableTools or dataTables
                 //select/deselect all rows according to table header checkbox
                 var active_class = 'active';
@@ -298,6 +321,31 @@
                     $(this).closest('tr').next().toggleClass('open');
                     $(this).find(ace.vars['.icon']).toggleClass('fa-angle-double-down').toggleClass('fa-angle-double-up');
                 });
+           
+                $( "#id-btn-dialog1" ).on('click', function(e) {
+                    e.preventDefault();
+                    var dialog = $( "#dialog-message" ).removeClass('hide').dialog({
+                        modal: true,
+                        title: "<div class='widget-header widget-header-small'><h4 class='smaller'><i class='ace-icon fa fa-check'></i> jQuery UI Dialog</h4></div>",
+                        title_html: true,
+                        buttons: [ 
+                            {
+                                text: "Cancel",
+                                "class" : "btn btn-minier",
+                                click: function() {
+                                    $( this ).dialog( "close" ); 
+                                } 
+                            },
+                            {
+                                text: "OK",
+                                "class" : "btn btn-primary btn-minier",
+                                click: function() {
+                                    $( this ).dialog( "close" ); 
+                                } 
+                            }
+                        ]
+                    });
+                });
  
             })
         </script>
@@ -316,5 +364,6 @@
             //
         });
     });
+
 </script>
 @endsection

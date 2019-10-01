@@ -18,7 +18,7 @@
                 <ul class="nav ace-nav">
                     <li class="light-blue dropdown-modal">
                         <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                            <img class="nav-user-photo" src="{{ asset('public/dashboard/images/avatars/user.jpg') }}" alt="Jason's Photo" />
+                            <img class="nav-user-photo" src="{{ asset('dashboard/images/avatars/user.jpg') }}" alt="Jason's Photo" />
                             <span class="user-info">
                                 <small>Xin chào,</small>
                                 <small>{{Auth::user()->name}}</small>

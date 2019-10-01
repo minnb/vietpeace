@@ -20,7 +20,6 @@ Route::group(['prefix'=> 'dashboard'], function(){
 		Route::get('edit/{id}', ['as'=>'get.dashboard.post.edit','uses'=>'Dashboard\PostController@getEdit']);
 		Route::post('edit/{id}', ['as'=>'post.dashboard.post.edit','uses'=>'Dashboard\PostController@postEdit']);
 		Route::get('del/{id}', ['as'=>'get.dashboard.post.del','uses'=>'Dashboard\PostController@postDel']);
-
 	});
 
 	Route::group(['prefix'=> 'user'], function(){
@@ -30,8 +29,15 @@ Route::group(['prefix'=> 'dashboard'], function(){
 		Route::get('edit/{id}', ['as'=>'get.dashboard.user.edit','uses'=>'Dashboard\UserController@getEdit']);
 		Route::post('edit/{id}', ['as'=>'post.dashboard.user.edit','uses'=>'Dashboard\UserController@postEdit']);
 		Route::get('del/{id}', ['as'=>'get.dashboard.user.del','uses'=>'Dashboard\UserController@postDel']);
-
 	});
 
+	Route::group(['prefix'=> 'function'], function(){
+		Route::get('list', ['as'=>'get.dashboard.function.list','uses'=>'Dashboard\FunctionController@getList']);
+		Route::get('add', ['as'=>'get.dashboard.function.add','uses'=>'Dashboard\FunctionController@getAdd']);
+		Route::post('add', ['as'=>'post.dashboard.function.add','uses'=>'Dashboard\FunctionController@postAdd']);
+		Route::get('edit/{id}', ['as'=>'get.dashboard.function.edit','uses'=>'Dashboard\FunctionController@getEdit']);
+		Route::post('edit/{id}', ['as'=>'post.dashboard.function.edit','uses'=>'Dashboard\FunctionController@postEdit']);
+		Route::get('del/{id}', ['as'=>'get.dashboard.function.del','uses'=>'Dashboard\FunctionController@postDel']);
+	});
 
 });

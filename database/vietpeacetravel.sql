@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 10.220.52.253:3306
--- Thời gian đã tạo: Th9 27, 2019 lúc 11:00 AM
+-- Thời gian đã tạo: Th10 01, 2019 lúc 10:56 AM
 -- Phiên bản máy phục vụ: 5.7.19
 -- Phiên bản PHP: 7.2.11
 
@@ -69,6 +69,37 @@ INSERT INTO `categories` (`id`, `type`, `parent`, `name`, `alias`, `description`
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `functions`
+--
+
+CREATE TABLE `functions` (
+  `id` int(5) NOT NULL,
+  `name` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
+  `url` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
+  `param` varchar(191) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `parent` smallint(4) NOT NULL,
+  `sort` smallint(4) NOT NULL,
+  `class` varchar(191) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `blocked` tinyint(1) NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `functions`
+--
+
+INSERT INTO `functions` (`id`, `name`, `url`, `param`, `parent`, `sort`, `class`, `blocked`, `updated_at`, `created_at`) VALUES
+(1, 'Category', '#', NULL, 0, 1, 'menu-icon fa fa-book', 1, '2019-10-01 09:45:17', '2019-10-01 08:51:07'),
+(2, 'Post', '#', NULL, 0, 2, 'fa-pencil-square-o', 1, '2019-10-01 09:45:27', '2019-10-01 08:52:52'),
+(3, 'Settings', '#', NULL, 0, 6, 'fa-cogs', 1, '2019-10-01 09:45:37', '2019-10-01 08:53:15'),
+(4, 'Sales Report', '#', NULL, 0, 5, 'fa-bar-chart-o', 1, '2019-10-01 09:04:50', '2019-10-01 09:04:50'),
+(5, 'Route', 'get.dashboard.function.list', NULL, 3, 1, NULL, 1, '2019-10-01 09:47:22', '2019-10-01 09:47:22'),
+(6, 'Destinations', 'get.dashboard.category.list', '[\'alias\'=>\'destinations\']', 1, 1, 'fa-caret-right', 1, '2019-10-01 10:29:40', '2019-10-01 10:29:40');
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `menu`
 --
 
@@ -111,6 +142,19 @@ CREATE TABLE `migrations` (
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `permissions`
+--
+
+CREATE TABLE `permissions` (
+  `id` tinyint(4) NOT NULL,
+  `role_id` smallint(6) NOT NULL,
+  `func_id` smallint(6) NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `posts`
 --
 
@@ -144,10 +188,11 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `cate_id`, `name`, `alias`, `day_number`, `unit_price`, `description`, `content`, `full_trip`, `trip_faq`, `hotels`, `guide_transport`, `meals`, `gallery`, `image`, `tags`, `viewed`, `vote`, `status`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, '6|9', 'test 1', 'test-1', NULL, '0.00', '<p>test</p>', '<p>test</p>', '{\"content\": null}', '{\"content\": null}', '{\"content\": null}', '{\"content\": null}', '{\"content\": null}', NULL, 'public/uploads/images/201909/Wk1nTaVLTC.jpg', NULL, 0, 0, 1, 1, '2019-09-25 03:54:17', '2019-09-27 04:39:35'),
-(2, '6|9', 'test', 'test', NULL, '0.00', NULL, '<p>test</p>', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 1, 1, '2019-09-25 04:25:00', '2019-09-25 04:25:00'),
+(1, '6|9', 'test 1', 'test-1', 5, '10000.00', '<p>test</p>', '<p>test</p>', '{\"content\": \"<p>full</p>\"}', '{\"content\": \"<p>t&eacute;t</p>\"}', '{\"content\": \"<p>ta</p>\"}', '{\"content\": \"<p>aaa</p>\"}', '{\"content\": \"<p>aaa</p>\"}', NULL, 'uploads/images/201909/Wk1nTaVLTC.jpg', NULL, 0, 0, 1, 1, '2019-09-25 03:54:17', '2019-10-01 05:45:55'),
+(2, '6|9', 'test', 'test', 2, '100.00', NULL, '<p>test</p>', '{\"content\": null}', '{\"content\": null}', '{\"content\": null}', '{\"content\": null}', '{\"content\": null}', '{\"arr_images\": [\"uploads/images/201910/RNqmvKqICT.jpg\", \"uploads/images/201910/wEVuygOdF3.jpg\", \"uploads/images/201910/CqvWSe7o2G.jpg\", \"uploads/images/201910/Zy0D8qi6SC.jpg\"]}', 'uploads/images/201910/AigaswxRlL.jpg', NULL, 0, 0, 1, 1, '2019-09-25 04:25:00', '2019-10-01 05:45:35'),
 (3, '6', 'minhnb', 'minhnb', 0, '0.00', NULL, NULL, '{\"content\": \"<p>test</p>\"}', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 1, 1, '2019-09-26 05:08:12', '2019-09-26 05:08:12'),
-(4, '6', 'admin', 'admin', 0, '0.00', '<p>test</p>', '<p>test</p>', '{\"content\": \"<p>itinerary</p>\"}', '{\"content\": \"<p>test trip faq</p>\"}', '{\"content\": \"<p>hotels</p>\"}', '{\"content\": \"<p>guide</p>\"}', '{\"content\": \"<p>meals</p>\"}', NULL, NULL, NULL, 0, 0, 1, 1, '2019-09-26 05:18:59', '2019-09-26 05:32:13');
+(4, '6', 'admin', 'admin', 0, '0.00', '<p>test</p>', '<p>test</p>', '{\"content\": \"<p>itinerary</p>\"}', '{\"content\": \"<p>test trip faq</p>\"}', '{\"content\": \"<p>hotels</p>\"}', '{\"content\": \"<p>guide</p>\"}', '{\"content\": \"<p>meals</p>\"}', NULL, NULL, NULL, 0, 0, 1, 1, '2019-09-26 05:18:59', '2019-09-30 03:28:10'),
+(5, '6', 'minhnb', 'minhnb', 0, '0.00', '<p>minhnb</p>', '<p>minhnb</p>', '{\"content\": null}', '{\"content\": null}', '{\"content\": null}', '{\"content\": null}', '{\"content\": null}', NULL, NULL, NULL, 0, 0, 1, 1, '2019-09-30 04:00:21', '2019-09-30 04:00:21');
 
 -- --------------------------------------------------------
 
@@ -192,7 +237,7 @@ CREATE TABLE `role_user` (
 
 INSERT INTO `role_user` (`id`, `role_id`, `user_id`, `created_at`, `updated_at`) VALUES
 (7, 1, 1, '2019-04-22 13:52:24', '2018-12-18 06:26:29'),
-(8, 3, 4, '2019-09-27 10:15:04', '2019-09-27 10:15:04');
+(8, 1, 4, '2019-09-28 01:28:02', '2019-09-28 01:28:02');
 
 -- --------------------------------------------------------
 
@@ -218,7 +263,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `blocked`, `created_at`, `updated_at`) VALUES
 (1, 'Binh Minh', 'minhnb.it@gmail.com', NULL, '$2y$10$j.DBpGEVvmJnjVfz7WhC1eq81efPWM3gkpZQ4QFfMZq1e/m/SGsfq', 'h1V4ryAtC6hs6vwirVp2Jjb3rrFjlJs4b6K1xAEH4IiH5yYOdm1v3WCdzkSN', 1, '2019-04-22 06:46:05', '2019-04-22 06:46:05'),
-(4, 'minhnb', 'abc@gmail.com', NULL, '$2y$10$pcTnPGrZ2BTiS2iAwHvAe.kj7It2gyGb2cGhGsZtKI/h5OqWvBycq', NULL, 0, '2019-09-27 10:15:04', '2019-09-27 10:15:04');
+(4, 'minhnb', 'abc@gmail.com', NULL, '$2y$10$pcTnPGrZ2BTiS2iAwHvAe.kj7It2gyGb2cGhGsZtKI/h5OqWvBycq', NULL, 1, '2019-09-27 10:15:04', '2019-09-28 01:28:02');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -228,6 +273,12 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 -- Chỉ mục cho bảng `categories`
 --
 ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `functions`
+--
+ALTER TABLE `functions`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -241,6 +292,13 @@ ALTER TABLE `menu`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `permissions`
+--
+ALTER TABLE `permissions`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `role_id` (`role_id`,`func_id`);
 
 --
 -- Chỉ mục cho bảng `posts`
@@ -277,6 +335,12 @@ ALTER TABLE `categories`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
+-- AUTO_INCREMENT cho bảng `functions`
+--
+ALTER TABLE `functions`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT cho bảng `menu`
 --
 ALTER TABLE `menu`
@@ -289,10 +353,16 @@ ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT cho bảng `permissions`
+--
+ALTER TABLE `permissions`
+  MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT cho bảng `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `roles`

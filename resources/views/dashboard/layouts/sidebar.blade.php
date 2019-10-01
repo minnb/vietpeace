@@ -121,12 +121,17 @@
             <b class="arrow"></b>
             <ul class="submenu">
                 <li class="">
+                    <a href="{{route('get.dashboard.function.list')}}">
+                        <i class="menu-icon fa fa-caret-right"></i>Route
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+                <li class="">
                     <a href="{{route('get.dashboard.user.list')}}">
                         <i class="menu-icon fa fa-caret-right"></i>Users
                     </a>
                     <b class="arrow"></b>
                 </li>
-
             </ul>
         </li>
     </ul>

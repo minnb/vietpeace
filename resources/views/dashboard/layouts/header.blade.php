@@ -8,14 +8,14 @@
     <link rel="shortcut icon" href="">
     <meta name="description" content="overview &amp; stats" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-    <link type="text/css" rel="stylesheet" href="{{ asset('public/dashboard/css/bootstrap.min.css') }}" />
-    <link type="text/css" rel="stylesheet" href="{{ asset('public/dashboard/font-awesome/4.5.0/css/font-awesome.min.css') }}" />
-    <link type="text/css" rel="stylesheet" href="{{ asset('public/dashboard/css/fonts.googleapis.com.css') }}" />
-    <link type="text/css" rel="stylesheet" href="{{ asset('public/dashboard/css/ace.min.css') }}" class="ace-main-stylesheet" id="main-ace-style"/>
-    <link type="text/css" rel="stylesheet" href="{{ asset('public/dashboard/css/ace-skins.min.css') }}" />
-    <link type="text/css" rel="stylesheet" href="{{ asset('public/dashboard/css/ace-rtl.min.css') }}" />
+    <link type="text/css" rel="stylesheet" href="{{ asset('dashboard/css/bootstrap.min.css') }}" />
+    <link type="text/css" rel="stylesheet" href="{{ asset('dashboard/font-awesome/4.5.0/css/font-awesome.min.css') }}" />
+    <link type="text/css" rel="stylesheet" href="{{ asset('dashboard/css/fonts.googleapis.com.css') }}" />
+    <link type="text/css" rel="stylesheet" href="{{ asset('dashboard/css/ace.min.css') }}" class="ace-main-stylesheet" id="main-ace-style"/>
+    <link type="text/css" rel="stylesheet" href="{{ asset('dashboard/css/ace-skins.min.css') }}" />
+    <link type="text/css" rel="stylesheet" href="{{ asset('dashboard/css/ace-rtl.min.css') }}" />
     @yield('stylesheet')
-    <script src="{{ asset('public/dashboard/js/ace-extra.min.js') }}"></script>
+    <script src="{{ asset('dashboard/js/ace-extra.min.js') }}"></script>
         <script type="text/javascript">
         var baseURL = "{!! url('/') !!}";
         window.setTimeout(function() {

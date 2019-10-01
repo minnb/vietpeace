@@ -2,8 +2,8 @@
 @section('title', 'Tour')
 @section('page_header', 'Add Tour')
 @section('stylesheet')  
-    <link type="text/css" rel="stylesheet" href="{{ asset('public/dashboard/css/select2.min.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/dashboard/plugin/jquery.filer/css/jquery.filer.css') }}"/>
+    <link type="text/css" rel="stylesheet" href="{{ asset('dashboard/css/select2.min.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('dashboard/plugin/jquery.filer/css/jquery.filer.css') }}"/>
 @endsection
 @section('content')
 <div class="page-content">
@@ -64,7 +64,7 @@
                 <div class="tab-content">
                     <div id="brief" class="tab-pane fade in active">
                         <div class="form-group">
-                            <label class="col-xs-2 control-label no-padding-right" for="form-field-1"> Category </label>
+                            <label class="col-xs-1 control-label no-padding-right" for="form-field-1"> Category </label>
                             <div class="col-xs-10">
                                 <select multiple="" id="cate_id" name="cate_id[]" class="select2" data-placeholder="Click to Choose...">
                                     {!! getSelectArrayForm(App\Models\Category::getSelect2Category(), [0]) !!}
@@ -72,45 +72,56 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-xs-2 control-label no-padding-right" for="form-field-1"> Tour name </label>
+                            <label class="col-xs-1 control-label no-padding-right" for="form-field-1"> Tour name </label>
                             <div class="col-xs-10">
                                 <input type="text" id="form-field-1" placeholder="Tour name" class="col-xs-10 col-sm-5" name="name" required="" value="{{ old('name') }}" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-xs-2 control-label no-padding-right" for="form-field-1"> Tags </label>
-                            <div class="col-xs-10">
-                                <textarea type="text" id="form-field-1" placeholder="#destination #tour" class="col-xs-10 col-sm-5" name="tags">{{ old('tags')}}</textarea>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-xs-2 control-label no-padding-right" for="form-field-1"> Description </label>
-                            <div class="col-xs-10">
-                                <textarea name="description" id="description"  rows="6" class="col-xs-10 col-sm-5">{{ old('description')}}</textarea>
+                            <label class="col-xs-1 control-label no-padding-right">Days</label>
+                            <div class="col-xs-3">
+                                <input type="number" id="form-field-2" class="col-xs-10 col-sm-5" name="day_number" required="" value="{{ old('day_number',0) }}" style="text-align: right" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-xs-2 control-label no-padding-right" for="form-field-1"> Content </label>
-                            <div class="col-xs-10">
-                                <textarea name="content" id="content" rows="6" class="col-xs-10 col-sm-5">{{ old('content')}}</textarea>
+                            <label class="col-xs-1 control-label no-padding-right">Unit Price ($)</label>
+                            <div class="col-xs-3">
+                                <input type="number" id="form-field-3" class="col-xs-10 col-sm-5" name="unit_price" required="" value="{{ old('unit_price',0) }}" style="text-align: right" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-xs-2 control-label no-padding-right">Status</label>
-                            <div class="col-xs-9">
+                            <label class="col-xs-1 control-label no-padding-right">Status</label>
+                            <div class="col-xs-3">
                                 <input name="status" class="ace ace-switch ace-switch-4 btn-rotate" type="checkbox" checked="true" />
                                 <span class="lbl"></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-xs-2 control-label no-padding-right">Image</label>
+                            <label class="col-xs-1 control-label no-padding-right" for="form-field-1"> Tags </label>
+                            <div class="col-xs-10">
+                                <textarea type="text" id="form-field-4" placeholder="#destination #tour" class="col-xs-10 col-sm-5" name="tags">{{ old('tags')}}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-xs-1 control-label no-padding-right">Image</label>
                             <div class="col-xs-4">
                                 <label class="ace-file-input">
                                     <input type="file" id="id-input-file-2" name="fileImage[]">
                                 </label>
                             </div>
                         </div>  
+                        <div class="form-group">
+                            <label class="col-xs-1 control-label no-padding-right" for="form-field-1"> Description </label>
+                            <div class="col-xs-10">
+                                <textarea name="description" id="description"  rows="6" class="col-xs-10 col-sm-5">{{ old('description')}}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-xs-1 control-label no-padding-right" for="form-field-1"> Content </label>
+                            <div class="col-xs-10">
+                                <textarea name="content" id="content" rows="6" class="col-xs-10 col-sm-5">{{ old('content')}}</textarea>
+                            </div>
+                        </div>
                     </div>
                     <div id="full" class="tab-pane fade">
                         <div class="form-group">
@@ -150,15 +161,15 @@
                     <div id="gallery" class="tab-pane fade">
                         <div class="form-group">
                             <div class="col-xs-12">
-                                <input class="form-control" type="file" name="fileImage[]" id="filer_image_gallery" multiple="multiple">
-                            </div><!-- /.col -->
+                                <input class="form-control" type="file" name="galleryImage[]" id="filer_image_gallery" multiple="multiple">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="clearfix"></div>
             <div class="clearfix form-actions">
-                <div class="col-md-offset-3 col-md-9">
+                <div class="col-md-offset-1 col-md-9">
                     <button class="btn btn-info" type="Submit">
                         <i class="ace-icon fa fa-check bigger-110"></i>
                         Submit
@@ -180,15 +191,15 @@
 </div>
 @endsection
 @section("javascript")  
-<script src="<?php echo asset('public/dashboard/plugin/func_ckfinder.js'); ?>"></script>
-<script src="<?php echo asset('public/dashboard/plugin/ckeditor/ckeditor.js'); ?>"></script>
-<script src="<?php echo asset('public/dashboard/plugin/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js'); ?>"></script>
-<script src="{{asset('public/dashboard/js/select2.min.js') }}"></script>
-<script src="{{asset('public/dashboard/js/jquery-ui.custom.min.js') }}"></script>
-<script src="{{asset('public/dashboard/js/jquery.ui.touch-punch.min.js') }}"></script>
-<script src="{{asset('public/dashboard/js/bootbox.js') }}"></script>
-<script src="{{asset('public/dashboard/js/bootstrap-multiselect.min.js') }}"></script>
-<script src="{{asset('public/dashboard/plugin/jquery.filer/js/jquery.filer.min.js') }}"></script>
+<script src="<?php echo asset('dashboard/plugin/func_ckfinder.js'); ?>"></script>
+<script src="<?php echo asset('dashboard/plugin/ckeditor/ckeditor.js'); ?>"></script>
+<script src="<?php echo asset('dashboard/plugin/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js'); ?>"></script>
+<script src="{{asset('dashboard/js/select2.min.js') }}"></script>
+<script src="{{asset('dashboard/js/jquery-ui.custom.min.js') }}"></script>
+<script src="{{asset('dashboard/js/jquery.ui.touch-punch.min.js') }}"></script>
+<script src="{{asset('dashboard/js/bootbox.js') }}"></script>
+<script src="{{asset('dashboard/js/bootstrap-multiselect.min.js') }}"></script>
+<script src="{{asset('dashboard/plugin/jquery.filer/js/jquery.filer.min.js') }}"></script>
 <script type="text/javascript">
     jQuery(document).ready(function(){
         $('#id-input-file-1 , #id-input-file-2').ace_file_input({

@@ -1,8 +1,9 @@
 @extends('dashboard.app')
 @section('title', 'Tour')
-@section('page_header', 'Add Tour')
+@section('page_header', 'Edit Tour')
 @section('stylesheet')  
-    <link type="text/css" rel="stylesheet" href="{{ asset('public/dashboard/css/select2.min.css') }}" />
+    <link type="text/css" rel="stylesheet" href="{{ asset('dashboard/css/select2.min.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('dashboard/plugin/jquery.filer/css/jquery.filer.css') }}"/>
 @endsection
 @section('content')
 <div class="page-content">
@@ -63,7 +64,7 @@
                 <div class="tab-content">
                     <div id="add" class="tab-pane fade in active">
                         <div class="form-group">
-                            <label class="col-xs-2 control-label no-padding-right" for="form-field-1"> Category </label>
+                            <label class="col-xs-1 control-label no-padding-right" for="form-field-1"> Category </label>
                             <div class="col-xs-10">
                                 <select multiple="" id="cate_id" name="cate_id[]" class="select2">
                                     {!! getSelectArrayForm(App\Models\Category::getSelect2Category(), old('cate_id', isset($data) ? convertStrToArr("|", $data['cate_id']): [0]) ) !!}
@@ -71,13 +72,32 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-xs-2 control-label no-padding-right" for="form-field-1"> Tour name </label>
+                            <label class="col-xs-1 control-label no-padding-right" for="form-field-1"> Tour name </label>
                             <div class="col-xs-10">
                                 <input type="text" id="form-field-1" placeholder="Tour name" class="col-xs-10 col-sm-5" name="name" required="" value="{{ old('name', isset($data) ? $data['name'] : '')  }}" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-xs-2 control-label no-padding-right" for="form-field-1"> Tags </label>
+                            <label class="col-xs-1 control-label no-padding-right">Days</label>
+                            <div class="col-xs-3">
+                                <input type="number" id="form-field-2" class="col-xs-10 col-sm-5" name="day_number" required="" value="{{ old('day_number',isset($data) ? $data['day_number'] : 0) }}" style="text-align: right" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-xs-1 control-label no-padding-right">Unit Price ($)</label>
+                            <div class="col-xs-3">
+                                <input type="number" id="form-field-3" class="col-xs-10 col-sm-5" name="unit_price" required="" value="{{ old('unit_price',isset($data) ? $data['unit_price'] : 0) }}" style="text-align: right" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-xs-1 control-label no-padding-right">Status</label>
+                            <div class="col-xs-9">
+                                <input name="status" class="ace ace-switch ace-switch-4 btn-rotate" type="checkbox" checked="true" />
+                                <span class="lbl"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-xs-1 control-label no-padding-right" for="form-field-1"> Tags </label>
                             <div class="col-xs-10">
                                 <textarea type="text" id="form-field-1" placeholder="#destination #tour" class="col-xs-10 col-sm-5" name="tags">
                                 {{ old('tags', isset($data) ? $data['tags'] : '') }}</textarea>
@@ -85,27 +105,20 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-xs-2 control-label no-padding-right" for="form-field-1"> Description </label>
+                            <label class="col-xs-1 control-label no-padding-right" for="form-field-1"> Description </label>
                             <div class="col-xs-10">
                                 <textarea name="description" id="description"  rows="6" class="col-xs-10 col-sm-5">
                                 {{ old('description', isset($data) ? $data['description'] : '') }}</textarea>
                             </div>
                         </div>
                          <div class="form-group">
-                            <label class="col-xs-2 control-label no-padding-right" for="form-field-1"> Content </label>
+                            <label class="col-xs-1 control-label no-padding-right" for="form-field-1"> Content </label>
                             <div class="col-xs-10">
                                 <textarea name="content" id="content" rows="6" class="col-xs-10 col-sm-5">{{ old('content', isset($data) ? $data['content'] : '') }}</textarea>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-xs-2 control-label no-padding-right">Status</label>
-                            <div class="col-xs-9">
-                                <input name="status" class="ace ace-switch ace-switch-4 btn-rotate" type="checkbox" checked="true" />
-                                <span class="lbl"></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-xs-2 control-label no-padding-right">Image</label>
+                            <label class="col-xs-1 control-label no-padding-right">Image</label>
                             <div class="col-xs-4">
                                 <label class="ace-file-input">
                                     <input type="file" id="id-input-file-2" name="fileImage[]">
@@ -114,9 +127,9 @@
                         </div>
                         @if($data['image'] != '')
                         <div class="form-group">
-                            <label class="col-xs-2 control-label no-padding-right"></label>
+                            <label class="col-xs-1 control-label no-padding-right"></label>
                             <div class="col-xs-4">
-                                <img src="{{asset($data['image'])}}" style="width: 50%;">
+                                <img src="{{ asset($data['image']) }}" style="width: 50%;">
                             </div>
                         </div>  
                         @endif
@@ -164,7 +177,34 @@
                     <div id="gallery" class="tab-pane fade">
                         <div class="form-group">
                             <div class="col-xs-12">
-                                
+                                <input class="form-control" type="file" name="galleryImage[]" id="filer_image_gallery" multiple="multiple">
+                            </div>
+                        </div>
+                        <div class="page-header">
+                            <h1>Gallery</h1>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                @if(isset($galleryImg) && count($galleryImg) > 0)
+                                    <div>
+                                        <ul class="ace-thumbnails clearfix">
+                                            @foreach($galleryImg as $img)
+                                            <li>
+                                                <a href="{{ asset($img) }}" title="Photo Title" data-rel="colorbox">
+                                                    <img width="150" height="150" alt="150x150" src="{{ asset($img) }}" />
+                                                </a>
+                                                <div class="tools tools-bottom">
+                                                    <a href="#">
+                                                        <i class="ace-icon fa fa-times red"></i>
+                                                    </a>
+                                                </div>
+                                            </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @else
+                                    <span>No data</span>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -194,13 +234,12 @@
 </div>
 @endsection
 @section("javascript")  
-<script src="<?php echo asset('public/dashboard/plugin/func_ckfinder.js'); ?>"></script>
-<script src="<?php echo asset('public/dashboard/plugin/ckeditor/ckeditor.js'); ?>"></script>
-<script src="<?php echo asset('public/dashboard/plugin/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js'); ?>"></script>
-<script src="{{asset('public/dashboard/js/select2.min.js') }}"></script>
-<script src="{{asset('public/dashboard/js/bootstrap-multiselect.min.js') }}"></script>
-
-
+<script src="<?php echo asset('dashboard/plugin/func_ckfinder.js'); ?>"></script>
+<script src="<?php echo asset('dashboard/plugin/ckeditor/ckeditor.js'); ?>"></script>
+<script src="<?php echo asset('dashboard/plugin/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js'); ?>"></script>
+<script src="{{asset('dashboard/js/select2.min.js') }}"></script>
+<script src="{{asset('dashboard/js/bootstrap-multiselect.min.js') }}"></script>
+<script src="{{asset('dashboard/plugin/jquery.filer/js/jquery.filer.min.js') }}"></script>
 <script type="text/javascript">
     jQuery(document).ready(function(){
         $('#id-input-file-1 , #id-input-file-2').ace_file_input({
@@ -259,5 +298,18 @@
                     $('.multiselect').multiselect('destroy');
                 });
 
+</script>
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        'use-strict';
+        $('#filer_image_gallery').filer({
+            limit: 3,
+            maxSize: 3,
+            extensions: ['jpg', 'jpeg', 'png', 'gif', 'psd'],
+            changeInput: true,
+            showThumbs: true,
+            addMore: true
+        });
+    });
 </script>
 @endsection

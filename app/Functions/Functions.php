@@ -150,7 +150,7 @@ function convertArrToStr($char, $str){
 }
 
 function checkFolderImage(){
-  $path_server = 'public/uploads/images';
+  $path_server = 'uploads/images';
   $str = date("Ym");
   $path = $path_server.'/'.$str;
   if (!file_exists($path)) {
@@ -169,7 +169,7 @@ function randomString($length = 10){
     return $randomString;
 }
 function getImage($link){
-  $path = 'public/image/no_image.svg';
+  $path = '/uploads/no_image.svg';
   return File::exists($link) ? $link : $path;
 }
 function delete_image_by_path($image,$path){

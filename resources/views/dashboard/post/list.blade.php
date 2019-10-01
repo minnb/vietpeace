@@ -1,9 +1,6 @@
 @extends('dashboard.app')
 @section('title', 'Tour')
 @section('page_header', 'List Tour')
-@section('stylesheet')  
-    
-@endsection
 @section('content')
 <div class="page-content">
     <div class="page-header">
@@ -46,6 +43,8 @@
                                         <th>Image</th>
                                         <th>Name</th>
                                         <th>Category</th>
+                                        <th>Days</th>
+                                        <th>UnitPrice</th>
                                         <th>Status</th>
                                         <th>
                                         </th>
@@ -64,6 +63,8 @@
                                             </a>
                                         </td>
                                         <td>{{ App\Models\Category::getStrCateName($item->cate_id) }}</td>
+                                        <td style="text-align: center;">{{ $item->day_number }}</td>
+                                        <td style="text-align: right;">{{ number_format($item->unit_price) }} $</td>
                                         <td>{{ getStatus($item->status) }}</td>
                                         <td>
                                             <div class="hidden-sm hidden-xs action-buttons">
