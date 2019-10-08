@@ -2,7 +2,7 @@
 @section('title', 'Categories')
 @section('page_header', 'Edit Category')
 @section('stylesheet')  
-    <link rel="stylesheet" href="#" />
+   
 @endsection
 @section('content')
 <div class="page-content">

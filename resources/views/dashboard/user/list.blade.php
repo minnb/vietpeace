@@ -2,7 +2,6 @@
 @section('title', 'User')
 @section('page_header', 'List User')
 @section('stylesheet')  
-    <link rel="stylesheet" href="#" />
 @endsection
 @section('content')
 <div class="page-content">

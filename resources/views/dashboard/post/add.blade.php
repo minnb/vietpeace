@@ -2,8 +2,8 @@
 @section('title', 'Tour')
 @section('page_header', 'Add Tour')
 @section('stylesheet')  
-    <link type="text/css" rel="stylesheet" href="{{ asset('dashboard/css/select2.min.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('dashboard/plugin/jquery.filer/css/jquery.filer.css') }}"/>
+    <link type="text/css" rel="stylesheet" href="{{ asset('public/dashboard/css/select2.min.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/dashboard/plugin/jquery.filer/css/jquery.filer.css') }}"/>
 @endsection
 @section('content')
 <div class="page-content">
@@ -191,15 +191,15 @@
 </div>
 @endsection
 @section("javascript")  
-<script src="<?php echo asset('dashboard/plugin/func_ckfinder.js'); ?>"></script>
-<script src="<?php echo asset('dashboard/plugin/ckeditor/ckeditor.js'); ?>"></script>
-<script src="<?php echo asset('dashboard/plugin/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js'); ?>"></script>
-<script src="{{asset('dashboard/js/select2.min.js') }}"></script>
-<script src="{{asset('dashboard/js/jquery-ui.custom.min.js') }}"></script>
-<script src="{{asset('dashboard/js/jquery.ui.touch-punch.min.js') }}"></script>
-<script src="{{asset('dashboard/js/bootbox.js') }}"></script>
-<script src="{{asset('dashboard/js/bootstrap-multiselect.min.js') }}"></script>
-<script src="{{asset('dashboard/plugin/jquery.filer/js/jquery.filer.min.js') }}"></script>
+<script src="<?php echo asset('public/dashboard/plugin/func_ckfinder.js'); ?>"></script>
+<script src="<?php echo asset('public/dashboard/plugin/ckeditor/ckeditor.js'); ?>"></script>
+<script src="<?php echo asset('public/dashboard/plugin/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js'); ?>"></script>
+<script src="{{asset('public/dashboard/js/select2.min.js') }}"></script>
+<script src="{{asset('public/dashboard/js/jquery-ui.custom.min.js') }}"></script>
+<script src="{{asset('public/dashboard/js/jquery.ui.touch-punch.min.js') }}"></script>
+<script src="{{asset('public/dashboard/js/bootbox.js') }}"></script>
+<script src="{{asset('public/dashboard/js/bootstrap-multiselect.min.js') }}"></script>
+<script src="{{asset('public/dashboard/plugin/jquery.filer/js/jquery.filer.min.js') }}"></script>
 <script type="text/javascript">
     jQuery(document).ready(function(){
         $('#id-input-file-1 , #id-input-file-2').ace_file_input({

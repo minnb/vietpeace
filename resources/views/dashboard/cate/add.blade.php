@@ -2,7 +2,7 @@
 @section('title', 'Categories')
 @section('page_header', 'Add Category')
 @section('stylesheet')  
-    <link rel="stylesheet" href="#" />
+    
 @endsection
 @section('content')
 <div class="page-content">
@@ -38,7 +38,7 @@
                 <div class="tab-content">
                     <div id="add" class="tab-pane fade in active">
                         <div class="form-group">
-                            <label class="col-xs-2 control-label no-padding-right" for="form-field-1"> {{Illuminate\Support\Str::studly($name)}}  </label>
+                            <label class="col-xs-2 control-label no-padding-right" for="form-field-1"> {{Illuminate\Support\Str::studly($name)}} </label>
                             <div class="col-xs-4">
                                 <select class="chosen-select form-control" id="form-field-select-3" name="parent" required="">
                                     {!! menuMulti(App\Models\Category::getMultiCategory($parent),0,"--",0) !!}

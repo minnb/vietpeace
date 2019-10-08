@@ -57,6 +57,7 @@ class FunctionController extends Controller
             $data->class = $request->classCss;
             $data->sort = $request->sort;
             $data->blocked = $request->status == 'on' ? 1 : 0;
+            $data->permissions = implode("|",$request->permissions);
             $data->save();
             DB::commit();
             return redirect()->route('get.dashboard.function.list')->with(['flash_message'=>'Created data successfully']);
@@ -91,6 +92,7 @@ class FunctionController extends Controller
             $data->class = $request->classCss;
             $data->sort = $request->sort;
             $data->blocked = $request->status;
+            $data->permissions = implode("|",$request->permissions);
             $data->save();
             DB::commit();
             return redirect()->route('get.dashboard.function.list')->with(['flash_message'=>'Edited data successfully']);

@@ -26,4 +26,20 @@ class Role extends Model
 		return $user;
 	}
 
+	public static function getSelectMultiRole(){
+        $data = DB::table('roles')->select('id','name')->orderBy('id')->get()->toArray();
+        return $data;
+    }
+
+    public static function getStrRoleName($role_id){
+        $arr_cate = $role_id == '' ? [] : convertStrToArr("|", $role_id);
+        $str_cate = "";
+        if(count($arr_cate) > 0 ){
+            foreach($arr_cate as $item){
+                $cate_name = Role::find($item)->name;
+                $str_cate = $cate_name.', '.$str_cate;
+            }
+        }
+        return $str_cate;
+    }
 }

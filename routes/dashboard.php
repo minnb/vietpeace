@@ -20,6 +20,8 @@ Route::group(['prefix'=> 'dashboard'], function(){
 		Route::get('edit/{id}', ['as'=>'get.dashboard.post.edit','uses'=>'Dashboard\PostController@getEdit']);
 		Route::post('edit/{id}', ['as'=>'post.dashboard.post.edit','uses'=>'Dashboard\PostController@postEdit']);
 		Route::get('del/{id}', ['as'=>'get.dashboard.post.del','uses'=>'Dashboard\PostController@postDel']);
+
+		Route::delete('gallery/pointdelete', ['as'=>'delete.post.gallery.pointdelete','uses'=>'Dashboard\PostController@deleteImageGallery']);
 	});
 
 	Route::group(['prefix'=> 'user'], function(){

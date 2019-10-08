@@ -2,8 +2,8 @@
 @section('title', 'Tour')
 @section('page_header', 'Edit Tour')
 @section('stylesheet')  
-    <link type="text/css" rel="stylesheet" href="{{ asset('dashboard/css/select2.min.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('dashboard/plugin/jquery.filer/css/jquery.filer.css') }}"/>
+    <link type="text/css" rel="stylesheet" href="{{ asset('public/dashboard/css/select2.min.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/dashboard/plugin/jquery.filer/css/jquery.filer.css') }}"/>
 @endsection
 @section('content')
 <div class="page-content">
@@ -22,7 +22,7 @@
     <div class="row">
         <div class="col-xs-12">
             <form class="form-horizontal" role="form" action="{{route('post.dashboard.post.edit', ['id'=>fencrypt($id)])}}" method="POST" enctype="multipart/form-data">
-                            <input type="hidden" name="_token" value="<?php echo csrf_token() ?>">
+            <input type="hidden" name="_token" value="<?php echo csrf_token() ?>">
             <div class="tabbable">
                 <ul class="nav nav-tabs" id="myTab">
                     <li class="active">
@@ -188,14 +188,14 @@
                                 @if(isset($galleryImg) && count($galleryImg) > 0)
                                     <div>
                                         <ul class="ace-thumbnails clearfix">
-                                            @foreach($galleryImg as $img)
-                                            <li>
+                                            @foreach($galleryImg as $key=>$img)
+                                            <li class="gallery-image">
                                                 <a href="{{ asset($img) }}" title="Photo Title" data-rel="colorbox">
                                                     <img width="150" height="150" alt="150x150" src="{{ asset($img) }}" />
                                                 </a>
                                                 <div class="tools tools-bottom">
                                                     <a href="#">
-                                                        <i class="ace-icon fa fa-times red"></i>
+                                                        <i class="ace-icon fa fa-times red deletebtn" aria-hidden="true" data-postid="{{$id}}" data-pointid="{{$key}}"></i>
                                                     </a>
                                                 </div>
                                             </li>
@@ -234,12 +234,12 @@
 </div>
 @endsection
 @section("javascript")  
-<script src="<?php echo asset('dashboard/plugin/func_ckfinder.js'); ?>"></script>
-<script src="<?php echo asset('dashboard/plugin/ckeditor/ckeditor.js'); ?>"></script>
-<script src="<?php echo asset('dashboard/plugin/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js'); ?>"></script>
-<script src="{{asset('dashboard/js/select2.min.js') }}"></script>
-<script src="{{asset('dashboard/js/bootstrap-multiselect.min.js') }}"></script>
-<script src="{{asset('dashboard/plugin/jquery.filer/js/jquery.filer.min.js') }}"></script>
+<script src="<?php echo asset('public/dashboard/plugin/func_ckfinder.js'); ?>"></script>
+<script src="<?php echo asset('public/dashboard/plugin/ckeditor/ckeditor.js'); ?>"></script>
+<script src="<?php echo asset('public/dashboard/plugin/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js'); ?>"></script>
+<script src="{{asset('public/dashboard/js/select2.min.js') }}"></script>
+<script src="{{asset('public/dashboard/js/bootstrap-multiselect.min.js') }}"></script>
+<script src="{{asset('public/dashboard/plugin/jquery.filer/js/jquery.filer.min.js') }}"></script>
 <script type="text/javascript">
     jQuery(document).ready(function(){
         $('#id-input-file-1 , #id-input-file-2').ace_file_input({
@@ -297,7 +297,27 @@
                     $('.rating').raty('destroy');
                     $('.multiselect').multiselect('destroy');
                 });
-
+    
+    $(".deletebtn").click(function(ev){
+        let pointid = $(this).attr("data-pointid");
+        let postid =  $(this).attr("data-postid");
+        let parentli = $(this).closest('li.gallery-image');
+        $.ajax({
+           type: 'DELETE',
+           url: '/dashboard/post/gallery/pointdelete',
+           dataType: 'json',
+           headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+           data: {id:postid,img:pointid,"_token": "{{ csrf_token() }}"},
+           success: function(data) {
+                console.log(data);
+                $(parentli).remove();
+           },
+           error: function(data) {
+                console.log(data);
+                $(parentli).remove();
+           }
+        });
+    });
 </script>
 <script type="text/javascript">
     jQuery(document).ready(function(){

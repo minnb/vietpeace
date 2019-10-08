@@ -202,4 +202,28 @@ class PostController extends Controller
             return back()->withErrors($e->getMessage())->withInput($request->input());
         }
     }
+
+    public function deleteImageGallery(Request $request){
+        try{
+            if(isset($request->img) && isset($request->id)){
+                DB::beginTransaction();
+                    $post_Gallery = new Post_Gallery();
+                    $post = Post::findOrFail($request->id);
+                    $gallery = json_decode($post->gallery,true)['arr_images'];
+                    delete_image_no_path($gallery[$request->img]);
+                    unset($gallery[$request->img]);
+
+                    $post_Gallery->arr_images = $gallery;
+                    
+                    $post->gallery = json_encode($post_Gallery);
+                    $post->save();
+                DB::commit();
+                return 'success';
+            }
+        }catch (\Exception $e) {
+            DB::rollBack();
+            return $e->getMessage();
+        }
+        
+    }
 }

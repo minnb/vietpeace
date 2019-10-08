@@ -85,6 +85,14 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="col-xs-2 control-label no-padding-right" for="form-field-1"> Permissions </label>
+                            <div class="col-xs-10">
+                                <select multiple="" id="cate_id" name="permissions[]" class="select2">
+                                    {!! getSelectArrayForm(App\Models\Role::getSelectMultiRole(), old('permissions', isset($data) ? convertStrToArr("|", $data['permissions']): [0]) ) !!}
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
