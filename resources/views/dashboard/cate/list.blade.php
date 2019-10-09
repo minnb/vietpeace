@@ -80,7 +80,7 @@
                                                 <div class="inline pos-rel">
                                                     <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
                                                         <li>
-                                                            <a href="{{ route('get.dashboard.category.edit', ['name'=>makeUnicode($name), 'id'=>($item->id)])}}">
+                                                            <a href="{{ route('get.dashboard.category.edit', ['name'=>makeUnicode($name), 'id'=>fencrypt($item->id)])}}">
                                                                 <span class="red">
                                                                     <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
                                                                 </span>

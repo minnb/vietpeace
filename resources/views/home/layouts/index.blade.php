@@ -34,7 +34,6 @@
 					<!-- End box tour -->
 				</div>
 				<!-- End col -->
-
 				<div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.2s">
 					<div class="tour_container">
 						<div class="ribbon_3 popular"><span>Popular</span></div>

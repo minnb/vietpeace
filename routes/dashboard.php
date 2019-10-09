@@ -41,5 +41,9 @@ Route::group(['prefix'=> 'dashboard'], function(){
 		Route::post('edit/{id}', ['as'=>'post.dashboard.function.edit','uses'=>'Dashboard\FunctionController@postEdit']);
 		Route::get('del/{id}', ['as'=>'get.dashboard.function.del','uses'=>'Dashboard\FunctionController@postDel']);
 	});
+	Route::group(['prefix'=> 'config'], function(){
+		Route::get('info', ['as'=>'get.dashboard.config.info','uses'=>'Dashboard\ConfigController@getConfig']);
+		Route::post('info/{names}', ['as'=>'post.dashboard.config.info','uses'=>'Dashboard\ConfigController@postConfig']);
+	});
 
 });

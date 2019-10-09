@@ -121,6 +121,12 @@
             <b class="arrow"></b>
             <ul class="submenu">
                 <li class="">
+                    <a href="{{route('get.dashboard.config.info')}}">
+                        <i class="menu-icon fa fa-caret-right"></i>Config
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+                <li class="">
                     <a href="{{route('get.dashboard.function.list')}}">
                         <i class="menu-icon fa fa-caret-right"></i>Route
                     </a>

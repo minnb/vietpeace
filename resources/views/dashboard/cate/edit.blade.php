@@ -35,7 +35,7 @@
                 </ul>
                 <div class="tab-content">
                     <div id="add" class="tab-pane fade in active">
-                       <form class="form-horizontal" role="form" action="{{route('post.dashboard.category.edit', ['name'=>makeUnicode($name), 'id'=>($id)])}}" method="POST" enctype="multipart/form-data">
+                       <form class="form-horizontal" role="form" action="{{route('post.dashboard.category.edit', ['name'=>makeUnicode($name), 'id'=>fencrypt($id)])}}" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="_token" value="<?php echo csrf_token() ?>">
                             <div class="form-group">
                                 <label class="col-xs-2 control-label no-padding-right" for="form-field-1"> {{Illuminate\Support\Str::studly($name)}} </label>

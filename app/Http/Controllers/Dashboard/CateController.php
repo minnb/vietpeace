@@ -70,16 +70,15 @@ class CateController extends Controller
         }
     }
 
-    public function getEdit($name, $id){
-        //$id = fdecrypt($idd);
-        
+    public function getEdit($name, $idd){
+        $id = fdecrypt($idd);
         $data = Category::findOrFail($id);
         $parent = DB::table('categories')->where('alias', $name)->get()[0]->id;
         return view('dashboard.cate.edit', compact('data', 'id', 'name','parent'));
     }
 
-    public function postEdit(Request $request, $name, $id){
-        //$id = fdecrypt($idd);
+    public function postEdit(Request $request, $name, $idd){
+        $id = fdecrypt($idd);
         try{
             DB::beginTransaction();
                 $data = Category::findOrFail($id);
@@ -104,9 +103,7 @@ class CateController extends Controller
                         }
                     }
                 }
-
                 $data->save();
-
             DB::commit();
             return redirect()->route('get.dashboard.category.list',['name'=>makeUnicode($name)])->with(['flash_message'=>'Chỉnh sửa dữ liệu thành công']);
          }catch (Exception $e) {
