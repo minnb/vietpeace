@@ -30,7 +30,7 @@
                 <a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Menu mobile</span></a>
                 <div class="main-menu">
                     <div id="header_menu">
-                        <img src="/../public/home/img/logo_sticky.png" width="160" height="34" alt="City tours" data-retina="true">
+                        <img src="{{ asset('public/home/img/logo_sticky.png') }}" width="160" height="34" alt="City tours" data-retina="true">
                     </div>
                     <a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
                     <ul>
@@ -69,17 +69,17 @@
                             <a href="#" data-toggle="dropdown" class="cart_bt"><i class="icon_bag_alt"></i><strong>3</strong></a>
                             <ul class="dropdown-menu" id="cart_items">
                                 <li>
-                                    <div class="image"><img src="/../public/home/img/thumb_cart_1.jpg" alt="image"></div>
+                                    <div class="image"><img src="{{ asset('public/home/img/thumb_cart_1.jpg') }}" alt="image"></div>
                                     <strong><a href="#">Louvre museum</a>1x $36.00 </strong>
                                     <a href="#" class="action"><i class="icon-trash"></i></a>
                                 </li>
                                 <li>
-                                    <div class="image"><img src="/../public/home/img/thumb_cart_2.jpg" alt="image"></div>
+                                    <div class="image"><img src="{{ asset('public/home/img/thumb_cart_2.jpg') }}" alt="image"></div>
                                     <strong><a href="#">Versailles tour</a>2x $36.00 </strong>
                                     <a href="#" class="action"><i class="icon-trash"></i></a>
                                 </li>
                                 <li>
-                                    <div class="image"><img src="/../public/home/img/thumb_cart_3.jpg" alt="image"></div>
+                                    <div class="image"><img src="{{ asset('public/home/img/thumb_cart_3.jpg') }}" alt="image"></div>
                                     <strong><a href="#">Versailles tour</a>1x $36.00 </strong>
                                     <a href="#" class="action"><i class="icon-trash"></i></a>
                                 </li>

@@ -8,22 +8,22 @@
     <meta name="author" content="Ansonika">
     <title>VietpeaceTravel - </title>
     <!-- Favicons-->
-    <link rel="shortcut icon" href="/../public/home/img/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" type="image/x-icon" href="/../public/home/img/apple-touch-icon-57x57-precomposed.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="/../public/home/img/apple-touch-icon-72x72-precomposed.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="/../public/home/img/apple-touch-icon-114x114-precomposed.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="/../public/home/img/apple-touch-icon-144x144-precomposed.png">
+    <link rel="shortcut icon" href="{{ asset('public/home/img/favicon.ico') }}" type="image/x-icon">
+    <link rel="apple-touch-icon" type="image/x-icon" href="{{ asset('public/home/img/apple-touch-icon-57x57-precomposed.png') }}">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="{{ asset('public/public/home/img/apple-touch-icon-72x72-precomposed.png') }}">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="{{ asset('public/home/img/apple-touch-icon-114x114-precomposed.png') }}">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="{{ asset('public/home/img/apple-touch-icon-144x144-precomposed.png') }}">
     <!-- GOOGLE WEB FONT -->
     <link href="https://fonts.googleapis.com/css?family=Gochi+Hand|Lato:300,400|Montserrat:400,700" rel="stylesheet">
     <!-- COMMON CSS -->
-	<link href="/../public/home/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/../public/home/css/style.css" rel="stylesheet">
-	<link href="/../public/home/css/vendors.css" rel="stylesheet">
+	<link href="{{ asset('public/home/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/home/css/style.css') }}" rel="stylesheet">
+	<link href="{{ asset('public/home/css/vendors.css') }}" rel="stylesheet">
 	<!-- CUSTOM CSS -->
-	<link href="/../public/home/css/custom.css" rel="stylesheet">
+	<link href="{{ asset('public/home/css/custom.css') }}" rel="stylesheet">
     <!-- REVOLUTION SLIDER CSS -->
-	<link rel="stylesheet" type="text/css" href="/../public/home/rev-slider-files/fonts/font-awesome/css/font-awesome.css">
-    <link rel="stylesheet" type="text/css" href="/../public/home/rev-slider-files/css/settings.css">  
+	<link rel="stylesheet" type="text/css" href="{{ asset('public/home/rev-slider-files/fonts/font-awesome/css/font-awesome.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/home/rev-slider-files/css/settings.css') }}">  
     <!-- REVOLUTION LAYERS STYLES -->
 	<style>
 		.tp-caption.NotGeneric-Title,

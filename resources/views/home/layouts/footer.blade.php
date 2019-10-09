@@ -122,21 +122,21 @@
 	</div>
 	<!-- /Sign In Popup -->
     <!-- Common scripts -->
-    <script src="/../public/home/js/jquery-2.2.4.min.js"></script>
-    <script src="/../public/home/js/common_scripts_min.js"></script>
-    <script src="/../public/home/js/functions.js"></script>
+    <script src="{{ asset('public/home/js/jquery-2.2.4.min.js') }}"></script>
+    <script src="{{ asset('public/home/js/common_scripts_min.js') }}"></script>
+    <script src="{{ asset('public/home/js/functions.js') }}"></script>
     <!-- SLIDER REVOLUTION SCRIPTS  -->
-    <script src="/../public/home/rev-slider-files/js/jquery.themepunch.tools.min.js"></script>
-	<script src="/../public/home/rev-slider-files/js/jquery.themepunch.revolution.min.js"></script>
-	<script src="/../public/home/rev-slider-files/js/extensions/revolution.extension.actions.min.js"></script>
-	<script src="/../public/home/rev-slider-files/js/extensions/revolution.extension.carousel.min.js"></script>
-	<script src="/../public/home/rev-slider-files/js/extensions/revolution.extension.kenburn.min.js"></script>
-	<script src="/../public/home/rev-slider-files/js/extensions/revolution.extension.layeranimation.min.js"></script>
-	<script src="/../public/home/rev-slider-files/js/extensions/revolution.extension.migration.min.js"></script>
-	<script src="/../public/home/rev-slider-files/js/extensions/revolution.extension.navigation.min.js"></script>
-	<script src="/../public/home/rev-slider-files/js/extensions/revolution.extension.parallax.min.js"></script>
-	<script src="/../public/home/rev-slider-files/js/extensions/revolution.extension.slideanims.min.js"></script>
-	<script src="/../public/home/rev-slider-files/js/extensions/revolution.extension.video.min.js"></script>
+    <script src="{{ asset('public/home/rev-slider-files/js/jquery.themepunch.tools.min.js') }}"></script>
+	<script src="{{ asset('public/home/rev-slider-files/js/jquery.themepunch.revolution.min.js') }}"></script>
+	<script src="{{ asset('public/home/rev-slider-files/js/extensions/revolution.extension.actions.min.js') }}"></script>
+	<script src="{{ asset('public/home/rev-slider-files/js/extensions/revolution.extension.carousel.min.js') }}"></script>
+	<script src="{{ asset('public/home/rev-slider-files/js/extensions/revolution.extension.kenburn.min.js') }}"></script>
+	<script src="{{ asset('public/home/rev-slider-files/js/extensions/revolution.extension.layeranimation.min.js') }}"></script>
+	<script src="{{ asset('public/home/rev-slider-files/js/extensions/revolution.extension.migration.min.js') }}"></script>
+	<script src="{{ asset('public/home/rev-slider-files/js/extensions/revolution.extension.navigation.min.js') }}"></script>
+	<script src="{{ asset('public/home/rev-slider-files/js/extensions/revolution.extension.parallax.min.js') }}"></script>
+	<script src="{{ asset('public/home/rev-slider-files/js/extensions/revolution.extension.slideanims.min.js') }}"></script>
+	<script src="{{ asset('public/home/rev-slider-files/js/extensions/revolution.extension.video.min.js') }}"></script>
 	<script>
 		var tpj = jQuery;
 		var revapi54;
