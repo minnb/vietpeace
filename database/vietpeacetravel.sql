@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 10.220.52.253:3306
--- Thời gian đã tạo: Th10 08, 2019 lúc 10:43 AM
+-- Thời gian đã tạo: Th10 10, 2019 lúc 10:17 AM
 -- Phiên bản máy phục vụ: 5.7.19
 -- Phiên bản PHP: 7.2.11
 
@@ -53,7 +53,7 @@ INSERT INTO `categories` (`id`, `type`, `parent`, `name`, `alias`, `description`
 (1, 0, 0, 'Destinations', 'destinations', '', NULL, NULL, 7, 1, 1, 1, '2019-04-26 08:12:04', '2019-04-27 00:27:31'),
 (2, 0, 0, 'Tours', 'tours', '', NULL, NULL, 2, 2, 1, 1, '2019-04-26 16:07:03', '2019-04-27 00:15:34'),
 (3, 0, 0, 'Travel Guide', 'travel-guide', '', NULL, NULL, 0, 3, 1, 1, '2019-04-27 00:31:05', '2019-04-27 00:38:56'),
-(4, 1, 1, 'Vietnam Destinations', 'vietnam-destinations', 'Voted as a favourite destination in 2016, Vietnam is becoming as an attractive destination in Asia thanks to magnificent natural scenery, delicious foods, rich culture, white sandy beaches. The must see places in Vietnam are Hanoi, Halong Bay, Sapa valleys, Tam Coc caves, Trang An grottoes, Phong Nha, Hue ancient capital, Hoi An ancient town, Nha Trang, Mui Ne, Ho Chi Minh City, Cu Chi tunnels, Mekong delta, Phu Quoc island. Vietnam holiday is diverse and suitable for everyone and any style of travel.', NULL, 'public/uploads/images/201905/GWmK6aAy3t.jpg', 0, 1, 1, 1, '2019-04-27 00:32:05', '2019-05-03 14:38:34'),
+(4, 1, 1, 'Vietnam Destinations', 'vietnam-destinations', '<p>Voted as a favourite destination in 2016, Vietnam is becoming as an attractive destination in Asia thanks to magnificent natural scenery, delicious foods, rich culture, white sandy beaches. The must see places in Vietnam are Hanoi, Halong Bay, Sapa valleys, Tam Coc caves, Trang An grottoes, Phong Nha, Hue ancient capital, Hoi An ancient town, Nha Trang, Mui Ne, Ho Chi Minh City, Cu Chi tunnels, Mekong delta, Phu Quoc island. Vietnam holiday is diverse and suitable for everyone and any style of travel.</p>', NULL, 'public/uploads/images/201910/2D1rsBxbIk.jpg', 0, 1, 1, 1, '2019-04-27 00:32:05', '2019-10-09 02:56:04'),
 (6, 1, 1, 'Lao Destinations', 'lao', NULL, NULL, NULL, 0, 2, 1, 1, '2019-04-27 00:37:56', '2019-05-02 14:53:23'),
 (7, 2, 2, 'Vietnam Tours', 'vietnam', NULL, NULL, NULL, 0, 0, 1, 1, '2019-04-27 00:39:49', '2019-05-02 14:53:27'),
 (8, 2, 2, 'Lao Tours', 'lao', NULL, NULL, NULL, 0, 2, 1, 1, '2019-04-27 00:40:24', '2019-05-02 14:53:33'),
@@ -143,6 +143,29 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `m_config`
+--
+
+CREATE TABLE `m_config` (
+  `id` smallint(4) NOT NULL,
+  `code` char(10) COLLATE utf8_unicode_ci NOT NULL,
+  `data` json NOT NULL,
+  `status` tinyint(2) NOT NULL DEFAULT '0',
+  `user_id` smallint(5) DEFAULT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `m_config`
+--
+
+INSERT INTO `m_config` (`id`, `code`, `data`, `status`, `user_id`, `updated_at`, `created_at`) VALUES
+(1, 'COMPANY', '{\"fax\": null, \"tax\": null, \"logo\": null, \"email\": \"minhnb.it@gmail.com\", \"phone\": \"09090909090\", \"slogan\": \"Vẻ đẹp bất tận, khám phá không tới hạn\", \"address\": \"Số 25 Hoàng Công Chất - Từ Liêm - Hà Nội\", \"company\": \"CÔNG TY DU LỊCH BÌNH ANH VIỆT\", \"contact\": \"Mr Tám\"}', 0, 1, '2019-10-09 08:23:01', '2019-10-09 08:23:01');
 
 -- --------------------------------------------------------
 
@@ -299,6 +322,12 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Chỉ mục cho bảng `m_config`
+--
+ALTER TABLE `m_config`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Chỉ mục cho bảng `permissions`
 --
 ALTER TABLE `permissions`
@@ -356,6 +385,12 @@ ALTER TABLE `menu`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `m_config`
+--
+ALTER TABLE `m_config`
+  MODIFY `id` smallint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `permissions`
