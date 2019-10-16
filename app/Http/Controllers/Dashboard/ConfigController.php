@@ -24,7 +24,12 @@ class ConfigController extends Controller
     public function postConfig(Request $request, $name){
         try{
             DB::beginTransaction();
-            $data = new WebConfig();
+            $check = WebConfig::where('code', $name)->first();
+            if($check->count() > 0 ){
+                $data = $check;
+            }else{
+                $data = new WebConfig();
+            }
             switch ($name) {
                 case 'COMPANY':
                     $comInfo = new CompanyInfo();
@@ -34,7 +39,7 @@ class ConfigController extends Controller
                     $comInfo->fax = $request->fax;
                     $comInfo->email = $request->email;
                     $comInfo->tax = $request->tax;
-                    $comInfo->contact = $request->contact;
+                    $comInfo->contact = $request->contact; 
                     $comInfo->slogan = $request->slogan;
                     if($request->file('fileImage')){
                         foreach(Input::file('fileImage') as $file ){

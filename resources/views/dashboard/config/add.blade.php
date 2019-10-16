@@ -75,7 +75,7 @@
                                         <input type="text" id="form-field-1" class="col-xs-12 col-sm-12" name="tax" value="{{ old('tax', isset($comInfoArr) ? $comInfoArr->tax : '') }}" />
                                     </div>
                                     <?php 
-                                        $path_logo = isset($comInfoArr) ? $comInfoArr->slogan : ''; 
+                                        $path_logo = isset($comInfoArr) ? $comInfoArr->logo : ''; 
                                         $slogan = isset($comInfoArr) ? $comInfoArr->slogan : '';
                                     ?>
                                     <div class="profile-info-row">

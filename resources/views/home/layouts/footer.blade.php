@@ -4,8 +4,8 @@
             <div class="row">
                 <div class="col-md-4">
                     <h3>Need help?</h3>
-                    <a href="tel://004542344599" id="phone">+45 423 445 99</a>
-                    <a href="mailto:help@citytours.com" id="email_footer">help@citytours.com</a>
+                    <a href="tel://004542344599" id="phone">+084 {{ $info_company_config->phone }}</a>
+                    <a href="mailto:help@citytours.com" id="email_footer">{{ $info_company_config->email }}</a>
                 </div>
                 <div class="col-md-3">
                     <h3>About</h3>
@@ -58,7 +58,7 @@
                             <li><a href="#"><i class="icon-vimeo"></i></a></li>
                             <li><a href="#"><i class="icon-youtube-play"></i></a></li>
                         </ul>
-                        <p>© Citytours 2018</p>
+                        <p>© VietpeaceTravel 2019</p>
                     </div>
                 </div>
             </div><!-- End row -->

@@ -14,6 +14,7 @@
     <link type="text/css" rel="stylesheet" href="{{ asset('public/dashboard/css/ace.min.css') }}" class="ace-main-stylesheet" id="main-ace-style"/>
     <link type="text/css" rel="stylesheet" href="{{ asset('public/dashboard/css/ace-skins.min.css') }}" />
     <link type="text/css" rel="stylesheet" href="{{ asset('public/dashboard/css/ace-rtl.min.css') }}" />
+    <link type="text/css" rel="stylesheet" href="{{ asset('public/dashboard/css/style.css') }}" />
     @yield('stylesheet')
     <script src="{{ asset('public/dashboard/js/ace-extra.min.js') }}"></script>
         <script type="text/javascript">
