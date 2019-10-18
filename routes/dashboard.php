@@ -21,6 +21,9 @@ Route::group(['prefix'=> 'dashboard'], function(){
 		Route::post('edit/{id}', ['as'=>'post.dashboard.post.edit','uses'=>'Dashboard\PostController@postEdit']);
 		Route::get('del/{id}', ['as'=>'get.dashboard.post.del','uses'=>'Dashboard\PostController@postDel']);
 
+		Route::get('slide', ['as'=>'get.dashboard.post.slide','uses'=>'Dashboard\PostController@getSlide']);
+		Route::post('slide', ['as'=>'post.dashboard.post.slide','uses'=>'Dashboard\PostController@postSlide']);
+
 		Route::delete('gallery/pointdelete', ['as'=>'delete.post.gallery.pointdelete','uses'=>'Dashboard\PostController@deleteImageGallery']);
 	});
 
@@ -44,6 +47,7 @@ Route::group(['prefix'=> 'dashboard'], function(){
 	Route::group(['prefix'=> 'config'], function(){
 		Route::get('info', ['as'=>'get.dashboard.config.info','uses'=>'Dashboard\ConfigController@getConfig']);
 		Route::post('info/{names}', ['as'=>'post.dashboard.config.info','uses'=>'Dashboard\ConfigController@postConfig']);
+		Route::get('cache/clear', ['as'=>'get.dashboard.config.cache.clear','uses'=>'Dashboard\ConfigController@getCacheClear']);
 	});
 
 });

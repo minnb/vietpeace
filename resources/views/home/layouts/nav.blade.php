@@ -23,7 +23,7 @@
         <div class="row">
             <div class="col-3">
                 <div id="logo_home">
-                	<h1><a href="index.html" title="City tours travel template">City Tours travel template</a></h1>
+                	<h1><a href="{{ url('/') }}" title="City tours travel template">City Tours travel template</a></h1>
                 </div>
             </div>
             <nav class="col-9">
@@ -66,7 +66,8 @@
                     </li>
                     <li>
                         <div class="dropdown dropdown-cart">
-                            <a href="#" data-toggle="dropdown" class="cart_bt"><i class="icon_bag_alt"></i><strong>3</strong></a>
+                            <a href="#" data-toggle="dropdown" class="cart_bt"><i class="icon_bag_alt"></i><strong>0</strong></a>
+                            <!--
                             <ul class="dropdown-menu" id="cart_items">
                                 <li>
                                     <div class="image"><img src="{{ asset('public/home/img/thumb_cart_1.jpg') }}" alt="image"></div>
@@ -89,7 +90,8 @@
                                     <a href="payment.html" class="button_drop outline">Check out</a>
                                 </li>
                             </ul>
-                        </div><!-- End dropdown-cart-->
+                            -->
+                        </div>
                     </li>
                 </ul>
             </nav>

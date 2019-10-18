@@ -10,14 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
+Route::get('/dashboard', 'Dashboard\DashboardController@index')->name('dashboard');
 include('dashboard.php');
 
-Route::get('/', function () {
-    return view('home.layouts.index');
-})->name('index');
+Route::get('/', ['as'=>'index','uses'=>'Home\IndexController@index'])->name('index');
 
-Auth::routes();
-
-Route::get('/dashboard', 'Dashboard\DashboardController@index')->name('dashboard');
 
 

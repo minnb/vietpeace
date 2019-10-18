@@ -71,6 +71,13 @@
                     </a>
                     <b class="arrow"></b>
                 </li>
+                <li class="">
+                    <a href="{{route('get.dashboard.post.list')}}">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Tours
+                    </a>
+                    <b class="arrow"></b>
+                </li>
                 <!--
                 <li class="">
                     <a href="">
@@ -135,6 +142,12 @@
                 <li class="">
                     <a href="{{route('get.dashboard.user.list')}}">
                         <i class="menu-icon fa fa-caret-right"></i>Users
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+                 <li class="">
+                    <a href="{{route('get.dashboard.config.cache.clear')}}">
+                        <i class="menu-icon fa fa-caret-right"></i>Cache
                     </a>
                     <b class="arrow"></b>
                 </li>

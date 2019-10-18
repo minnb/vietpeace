@@ -8,6 +8,7 @@ use App\Utils\CompanyInfo;
 Use DB; use Auth;
 use App\Models\User;
 use App\Models\WebConfig;
+use Illuminate\Support\Facades\Cache;
 class ConfigController extends Controller
 {
 	public function __construct()
@@ -19,6 +20,11 @@ class ConfigController extends Controller
     {
         $data = DB::table('m_config')->get();
         return view('dashboard.config.add', compact('data'));
+    }
+    
+    public function getCacheClear(){
+        Cache::flush();
+        return redirect()->route('dashboard');
     }
 
     public function postConfig(Request $request, $name){
