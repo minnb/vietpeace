@@ -72,9 +72,9 @@
                     <b class="arrow"></b>
                 </li>
                 <li class="">
-                    <a href="{{route('get.dashboard.post.list')}}">
+                    <a href="{{route('get.dashboard.slide.add', ['name'=>'list', 'id'=>'0'])}}">
                         <i class="menu-icon fa fa-caret-right"></i>
-                        Tours
+                        Slide
                     </a>
                     <b class="arrow"></b>
                 </li>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 10.220.52.253:3306
--- Thời gian đã tạo: Th10 18, 2019 lúc 11:00 AM
+-- Thời gian đã tạo: Th10 21, 2019 lúc 10:36 AM
 -- Phiên bản máy phục vụ: 5.7.19
 -- Phiên bản PHP: 7.2.11
 
@@ -180,6 +180,7 @@ CREATE TABLE `m_slides` (
   `alias` varchar(191) COLLATE utf8_unicode_ci DEFAULT NULL,
   `tags` varchar(191) COLLATE utf8_unicode_ci DEFAULT NULL,
   `image` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
+  `url` varchar(191) COLLATE utf8_unicode_ci DEFAULT NULL,
   `from_date` date NOT NULL,
   `to_date` date NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT '1',
@@ -187,6 +188,15 @@ CREATE TABLE `m_slides` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `m_slides`
+--
+
+INSERT INTO `m_slides` (`id`, `name`, `name2`, `alias`, `tags`, `image`, `url`, `from_date`, `to_date`, `status`, `user_id`, `created_at`, `updated_at`) VALUES
+(1, 'Best Vacation in Thailand', 'Cooking Class & Floating Markets', 'best-vacation-in-thailand', '', 'public/uploads/images/201910/b2aciMfUgg.jpg', NULL, '2019-10-21', '2019-10-21', 1, 1, '2019-10-21 05:41:55', '2019-10-21 08:33:19'),
+(2, 'Secured credit card transaction', 'Tours & Tickets in Japan', 'secured-credit-card-transaction', '', 'public/uploads/images/201910/nSSBEDNCp5.jpg', 'get.dashboard.function.list', '2019-10-21', '2019-10-21', 1, 1, '2019-10-21 07:48:32', '2019-10-21 08:37:55'),
+(3, 'Tours & Tickets in Japan', 'Tickets in Japan', 'tours-&-tickets-in-japan', '', 'public/uploads/images/201910/Tjdw4yscma.jpg', 'get.dashboard.function.list', '2019-10-21', '2019-10-21', 1, 1, '2019-10-21 07:57:21', '2019-10-21 08:38:09');
 
 -- --------------------------------------------------------
 
@@ -425,7 +435,7 @@ ALTER TABLE `m_config`
 -- AUTO_INCREMENT cho bảng `m_slides`
 --
 ALTER TABLE `m_slides`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `permissions`

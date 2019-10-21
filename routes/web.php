@@ -15,6 +15,7 @@ Route::get('/dashboard', 'Dashboard\DashboardController@index')->name('dashboard
 include('dashboard.php');
 
 Route::get('/', ['as'=>'index','uses'=>'Home\IndexController@index'])->name('index');
+Route::get('/tour/{id}/{name}', ['as'=>'index.tour.single','uses'=>'Home\IndexController@getSingleTour']);
 
 
 

@@ -118,14 +118,10 @@
 				</div>
 			</div>
 		</form>
-		<!--form -->
 	</div>
-	<!-- /Sign In Popup -->
-    <!-- Common scripts -->
     <script src="{{ asset('public/home/js/jquery-2.2.4.min.js') }}"></script>
     <script src="{{ asset('public/home/js/common_scripts_min.js') }}"></script>
     <script src="{{ asset('public/home/js/functions.js') }}"></script>
-    <!-- SLIDER REVOLUTION SCRIPTS  -->
     <script src="{{ asset('public/home/rev-slider-files/js/jquery.themepunch.tools.min.js') }}"></script>
 	<script src="{{ asset('public/home/rev-slider-files/js/jquery.themepunch.revolution.min.js') }}"></script>
 	<script src="{{ asset('public/home/rev-slider-files/js/extensions/revolution.extension.actions.min.js') }}"></script>
@@ -222,6 +218,6 @@
 			}
 		}); 
 	</script>
-	<script src="js/notify_func.js"></script>
+	<script src="{{ asset('public/home/js/notify_func.js') }}"></script>
 </body>
 </html>

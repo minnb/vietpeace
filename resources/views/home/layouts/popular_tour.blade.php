@@ -96,7 +96,7 @@
 					</div>
 					<div class="col-lg-3 col-md-6 text-center">
 						<p>
-							<a href="#"><img src="{{ asset('public/img/hotel.jpg') }}" alt="Pic" class="img-fluid"></a>
+							<a href="#"><img src="{{ asset('public/home/img/hotel.jpg') }}" alt="Pic" class="img-fluid"></a>
 						</p>
 						<h4><span>Hotel</span> booking</h4>
 						<p>

@@ -27,18 +27,20 @@ class Menu extends Model
     }
 
     public static function getSub2MenuFromCate($id){
-        if($id > 0)
-        {
-            if(Cache::get('sub2Menu-'.$id))
-            {
-                $data = Cache::get('sub2Menu-' . $id);
-            }else
-            {
-                $data = Cache::add('sub2Menu-' . $id, Category::where('parent', $id)->orderBy('sort')->get()->toArray(), 360);
-            }
-            return $data;
-        }else{
-            return [];
-        }
+        return Category::where('parent', $id)->orderBy('sort')->get()->toArray();
+        
+        // if($id > 0)
+        // {
+        //     if(Cache::get('sub2Menu-'.$id))
+        //     {
+        //         $data = Cache::get('sub2Menu-' . $id);
+        //     }else
+        //     {
+        //         $data = Cache::add('sub2Menu-' . $id, Category::where('parent', $id)->orderBy('sort')->get()->toArray(), 360);
+        //     }
+        //     return $data;
+        // }else{
+        //     return [];
+        // }
     }
 }

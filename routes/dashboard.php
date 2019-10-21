@@ -21,8 +21,9 @@ Route::group(['prefix'=> 'dashboard'], function(){
 		Route::post('edit/{id}', ['as'=>'post.dashboard.post.edit','uses'=>'Dashboard\PostController@postEdit']);
 		Route::get('del/{id}', ['as'=>'get.dashboard.post.del','uses'=>'Dashboard\PostController@postDel']);
 
-		Route::get('slide', ['as'=>'get.dashboard.post.slide','uses'=>'Dashboard\PostController@getSlide']);
-		Route::post('slide', ['as'=>'post.dashboard.post.slide','uses'=>'Dashboard\PostController@postSlide']);
+		Route::get('slide/{name}/{id}', ['as'=>'get.dashboard.slide.add','uses'=>'Dashboard\SlideController@getAdd']);
+		Route::post('slide/{name}/{id}', ['as'=>'post.dashboard.slide.add','uses'=>'Dashboard\SlideController@postAdd']);	
+		Route::post('slide/delete/{id}', ['as'=>'post.dashboard.slide.delete','uses'=>'Dashboard\SlideController@postDelete']);
 
 		Route::delete('gallery/pointdelete', ['as'=>'delete.post.gallery.pointdelete','uses'=>'Dashboard\PostController@deleteImageGallery']);
 	});

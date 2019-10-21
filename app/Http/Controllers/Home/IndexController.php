@@ -15,4 +15,10 @@ class IndexController extends Controller
 		return view('home.layouts.index');
 	}
 
+	public function getSingleTour($idd, $name){
+		$id = fdecrypt($idd);
+		$data = Post::findOrFail($id);
+
+		return view('home.tour.single', compact('data'));
+	}
 }

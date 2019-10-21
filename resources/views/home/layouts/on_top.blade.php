@@ -23,7 +23,7 @@
 			<div class="tour_container">
 				<div class="ribbon_3 popular"><span>Popular</span></div>
 				<div class="img_container">
-					<a href="#">
+					<a href="{{ route('index.tour.single', ['id'=>fencrypt($item['id']), 'name'=>makeUnicode($item['name']).'.htm']) }}">
 						<img src="{{ asset($item['image']) }}" width="800" height="533" class="img-fluid" alt="{!! $item['name'] !!}">
 						<div class="short_info">
 							<i class="icon_set_1_icon-44"></i>Historic Buildings<span class="price"><sup>$</sup> {!! number_format($item['unit_price']) !!}</span>
