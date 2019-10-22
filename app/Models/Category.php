@@ -62,4 +62,10 @@ class Category extends Model
 	    	])->get()[0]->name;
     	}
     }
+
+    public static function getImgBuyCate($cate){
+        $data = convertStrToArr('|', $cate);
+        $arrCate = DB::table('categories')->whereIn('id', $data)->inRandomOrder()->first();
+        return $arrCate;
+    }
 }

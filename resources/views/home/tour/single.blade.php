@@ -20,7 +20,7 @@
 		<?php
 			$galleryImg = [];
 			$gallery = $data['gallery'] != '' ? json_decode($data['gallery'],true)['arr_images'] : ''; 
-			if(count($gallery) > 0 ){
+			if(is_array($gallery) && count($gallery) > 0 ){
 				foreach($gallery as $item){
 					if(File::exists($item)){
 						array_push($galleryImg, $item);
@@ -32,38 +32,21 @@
 			<div class="row">
 				<div class="col-lg-8" id="single_tour_desc">
 					<p class="d-none d-md-block d-block d-lg-none"><a class="btn_map" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" data-text-swap="Hide map" data-text-original="View on map">View on map</a>
-					</p><!-- Map button for tablets/mobiles -->
-
+					</p>
 					@if(isset($galleryImg) && count($galleryImg) > 0)
 					<div id="Img_carousel" class="slider-pro">
 						<div class="sp-slides">
-
+							<?php $i = 0; $number_img = count($galleryImg)-1; ?>						
+							@for($j = 0; $j <= $number_img; $j++)
 							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="{{ asset($galleryImg[0]) }}" data-src="{{ asset($galleryImg[0]) }}" data-small="{{ asset($galleryImg[0]) }}" data-medium="{{ asset($galleryImg[0]) }}" data-large="{{ asset($galleryImg[0]) }}" data-retina="{{ asset($galleryImg[0]) }}">
+								<img alt="{{$j}}" class="sp-image" src="{{ asset('public/home/css/images/blank.gif') }}" data-src="{{ asset($galleryImg[$j]) }}" data-small="{{ asset($galleryImg[$j]) }}" data-medium="{{ asset($galleryImg[$j]) }}" data-large="{{ asset($galleryImg[$j]) }}" data-retina="{{ asset($galleryImg[$j]) }}">
 							</div>
-							
-							@foreach($galleryImg as $key=>$img)
-							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="{{ asset('public/home/css/images/blank.gif') }}" data-src="{{ asset($img) }}" data-small="{{ asset($img) }}" data-medium="img/slider_single_tour/2_medium.jpg" data-large="{{ asset($img) }}" data-retina="{{ asset($img) }}">
-								<h3 class="sp-layer sp-black sp-padding" data-horizontal="40" data-vertical="40" data-show-transition="left">{{$data['name']}}</h3>
-								<p class="sp-layer sp-white sp-padding" data-horizontal="40" data-vertical="100" data-show-transition="left" data-show-delay="200">
-									{{$data['name']}}
-								</p>
-								<p class="sp-layer sp-black sp-padding" data-horizontal="40" data-vertical="160" data-width="350" data-show-transition="left" data-show-delay="400">
-									{{$data['name']}}
-								</p>
-							</div>
-							@endforeach
-							
-							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="{{ asset('public/home/css/images/blank.gif') }}" data-src="{{ asset('public/home/img/slider_single_tour/9_medium.jpg') }}" data-small="{{ asset('public/home/img/slider_single_tour/9_small.jpg') }}" data-medium="{{ asset('public/home/img/slider_single_tour/9_medium.jpg') }}" data-large="{{ asset('public/home/img/slider_single_tour/9_large.jpg') }}" data-retina="{{ asset('public/home/img/slider_single_tour/9_large.jpg') }}">
-							</div>
+							@endfor
 						</div>
 						<div class="sp-thumbnails">
-							@foreach($galleryImg as $key=>$img)
-
-								<img alt="Image" class="sp-thumbnail" src="{{ File::exists($img) ? asset($img) : asset(getImgDefault()) }}">
-							@endforeach
+							@for($k = 0; $k <= $number_img; $k++)
+								<img alt="{{$k}}" class="sp-thumbnail" src="{{ File::exists($galleryImg[$k]) ? asset($galleryImg[$k]) : asset($galleryImg[$k]) }}">
+							@endfor
 						</div>
 					</div>
 					<hr>
@@ -315,33 +298,7 @@
 							<!-- End row -->
 							<hr>
 							<div class="review_strip_single">
-								<img src="img/avatar1.jpg" alt="Image" class="rounded-circle">
-								<small> - 10 March 2015 -</small>
-								<h4>Jhon Doe</h4>
-								<p>
-									"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus."
-								</p>
-								<div class="rating">
-									<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
-								</div>
-							</div>
-							<!-- End review strip -->
-
-							<div class="review_strip_single">
-								<img src="img/avatar3.jpg" alt="Image" class="rounded-circle">
-								<small> - 10 March 2015 -</small>
-								<h4>Jhon Doe</h4>
-								<p>
-									"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus."
-								</p>
-								<div class="rating">
-									<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
-								</div>
-							</div>
-							<!-- End review strip -->
-
-							<div class="review_strip_single last">
-								<img src="img/avatar2.jpg" alt="Image" class="rounded-circle">
+								<img src="{{ asset('public/home/img/avatar1.jpg') }}" alt="Image" class="rounded-circle">
 								<small> - 10 March 2015 -</small>
 								<h4>Jhon Doe</h4>
 								<p>
@@ -356,103 +313,43 @@
 					</div>
 				</div>
 				<!--End  single_tour_desc-->
-
-				<aside class="col-lg-4">
-					<p class="d-none d-xl-block d-lg-block d-xl-none">
-						<a class="btn_map" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" data-text-swap="Hide map" data-text-original="View on map">View on map</a>
-					</p>
-					<div class="box_style_1 expose">
-						<h3 class="inner">- Booking -</h3>
-						<div class="row">
-							<div class="col-sm-6">
-								<div class="form-group">
-									<label><i class="icon-calendar-7"></i> Select a date</label>
-									<input class="date-pick form-control" data-date-format="M d, D" type="text">
-								</div>
-							</div>
-							<div class="col-sm-6">
-								<div class="form-group">
-									<label><i class=" icon-clock"></i> Time</label>
-									<input class="time-pick form-control" value="12:00 AM" type="text">
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-6">
-								<div class="form-group">
-									<label>Adults</label>
-									<div class="numbers-row">
-										<input type="text" value="1" id="adults" class="qty2 form-control" name="quantity">
-									</div>
-								</div>
-							</div>
-							<div class="col-6">
-								<div class="form-group">
-									<label>Children</label>
-									<div class="numbers-row">
-										<input type="text" value="0" id="children" class="qty2 form-control" name="quantity">
-									</div>
-								</div>
-							</div>
-						</div>
-						<br>
-						<table class="table table_summary">
-							<tbody>
-								<tr>
-									<td>
-										Adults
-									</td>
-									<td class="text-right">
-										2
-									</td>
-								</tr>
-								<tr>
-									<td>
-										Children
-									</td>
-									<td class="text-right">
-										0
-									</td>
-								</tr>
-								<tr>
-									<td>
-										Total amount
-									</td>
-									<td class="text-right">
-										3x $52
-									</td>
-								</tr>
-								<tr class="total">
-									<td>
-										Total cost
-									</td>
-									<td class="text-right">
-										$154
-									</td>
-								</tr>
-							</tbody>
-						</table>
-						<a class="btn_full" href="cart.html">Book now</a>
-						<a class="btn_full_outline" href="#"><i class=" icon-heart"></i> Add to whislist</a>
-					</div>
-					<!--/box_style_1 -->
-
-					<div class="box_style_4">
-						<i class="icon_set_1_icon-90"></i>
-						<h4><span>Book</span> by phone</h4>
-						<a href="tel://004542344599" class="phone">+45 423 445 99</a>
-						<small>Monday to Friday 9.00am - 7.30pm</small>
-					</div>
-
-				</aside>
+				@include('home.tour.right')
 			</div>
-			<!--End row -->
 		</div>
-		<!--End container -->
-        
         <div id="overlay"></div>
-		<!-- Mask on input focus -->
-        
 	</main>
-	<!-- End main -->
+@endsection
+@section('javascript')
+	<script src="{{ asset('public/home/js/common_scripts_min.js') }}"></script>
+	<script src="{{ asset('public/home/js/functions.js') }}"></script>
+	<script src="{{ asset('public/home/js/jquery.sliderPro.min.js') }}"></script>
+	<script type="text/javascript">
+		$(document).ready(function ($) {
+			$('#Img_carousel').sliderPro({
+				width: 960,
+				height: 500,
+				fade: true,
+				arrows: true,
+				buttons: false,
+				fullScreen: false,
+				smallSize: 500,
+				startSlide: 0,
+				mediumSize: 1000,
+				largeSize: 3000,
+				thumbnailArrows: true,
+				autoplay: false
+			});
+		});
+	</script>
+	<script>
+		$('input.date-pick').datepicker('setDate', 'today');
+		$('input.time-pick').timepicker({
+			minuteStep: 15,
+			showInpunts: false
+		})
+	</script>
+	<script src="{{ asset('public/home/assets/validate.js') }}"></script>
+	<script src="http://maps.googleapis.com/maps/api/js"></script>
+	<script src="{{ asset('public/home/js/map.js') }}"></script>
+	<script src="{{ asset('public/home/js/infobox.js') }}"></script>
 @endsection

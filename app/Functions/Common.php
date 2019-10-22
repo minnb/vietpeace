@@ -15,3 +15,7 @@ function getStatus($status){
 	        echo "<span>Blocked</span>";
 	}
 }
+
+function getImageTopTour($image){
+	return !empty($image) ?  $image : 'public/home/img_default/single_tour_top_1.jpg';
+}

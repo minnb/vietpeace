@@ -42,6 +42,7 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
+                                        <td>Image</td>
                                         <th>Name</th>
                                         <th>Parent</th>
                                         <th>Image</th>
@@ -55,6 +56,7 @@
                                     @foreach($data as $key=>$item)
                                     <tr>
                                         <td>{{ $key+1 }}</td>
+                                        <td><img src="{{asset($item->image)}}" style="max-height: 100px;"></td>
                                         <td>
                                             <a href="{{ route('get.dashboard.category.edit', ['name'=>makeUnicode($name),'id'=>fencrypt($item->id)])}}">
                                                 {{ $item->name }}
@@ -68,7 +70,7 @@
                                         <td>{{ getStatus($item->status) }}</td>
                                         <td>
                                             <div class="hidden-sm hidden-xs action-buttons">
-                                                <a class="green" href="{{ route('get.dashboard.category.edit', ['name'=>makeUnicode($name), 'id'=>($item->id)])}}">
+                                                <a class="green" href="{{ route('get.dashboard.category.edit', ['name'=>makeUnicode($name), 'id'=>fencrypt($item->id)])}}">
                                                     <i class="ace-icon fa fa-pencil-square-o bigger-130"></i> Edit
                                                 </a>&nbsp; &nbsp; 
                                                 <a class="red" href="{{ route('get.dashboard.category.del', ['id'=>fencrypt($item->id)])}}" onclick="return alertDelete();">
