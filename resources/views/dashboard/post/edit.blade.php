@@ -182,11 +182,11 @@
                             </div>
                         </div>
                         <div class="page-header">
-                            <h1>Gallery</h1>
+                            <h1>Gallery <small>(size: 1,000x667)</small></h1>
                         </div>
                         <div class="form-group">
                             <div class="col-xs-12">
-                                @if(isset($galleryImg) && count($galleryImg) > 0)
+                                @if(isset($galleryImg) && count($galleryImg) > 0) 
                                     <div>
                                         <ul class="ace-thumbnails clearfix">
                                             @foreach($galleryImg as $key=>$img)

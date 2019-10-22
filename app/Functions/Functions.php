@@ -172,6 +172,11 @@ function getImage($link){
   $path = '/uploads/no_image.svg';
   return File::exists($link) ? $link : $path;
 }
+
+function getImgDefault(){
+  return 'public/dashboard/images/no-image.png';
+}
+
 function delete_image_by_path($image, $path){
   $img = $path.'/'.$image;
   if(File::exists($img)){
