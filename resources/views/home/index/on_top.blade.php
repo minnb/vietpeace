@@ -1,15 +1,6 @@
 <?php
-	// $data_on_top_tour = array();
-	// if(Illuminate\Support\Facades\Cache::has('cache_data_on_top_tour') == true){
-	// 	//$data_on_top_tour = Illuminate\Support\Facades\Cache::get('cache_data_on_top_tour');
-	// 	$data_on_top_tour = Cache::get('cache_data_on_top_tour', function () {
-	// 		return App\Models\Post::orderBy('id','desc')->limit(6)->get()->toArray();
-	// 	});
-	// }else{
-	// 	$data_query_on_top = App\Models\Post::orderBy('id','desc')->limit(6)->get();
-	// 	$data_on_top_tour = Illuminate\Support\Facades\Cache::add('cache_data_on_top_tour', $data_query_on_top->toArray(), 15);
-	// }
 	$data_on_top_tour = App\Models\Post::orderBy('id','desc')->limit(6)->get();
+	$data_list_tour_session = App\Models\CacheData::getTourListAll();
 ?>
 @if(!empty($data_on_top_tour))
 <div class="container margin_60">
@@ -44,7 +35,7 @@
 		@endforeach
 	</div>
 	<p class="text-center add_bottom_30">
-		<a href="all_tours_list.html" class="btn_1 medium"><i class="icon-eye-7"></i>View all tours (144) </a>
+		<a href="{{ route('index.tour.list',['id'=>'0','name'=>'all']) }}" class="btn_1 medium"><i class="icon-eye-7"></i>View all tours ({{$data_list_tour_session->count()}}) </a>
 	</p>
 	<hr>
 </div>

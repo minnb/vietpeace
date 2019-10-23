@@ -15,7 +15,12 @@ Route::get('/dashboard', 'Dashboard\DashboardController@index')->name('dashboard
 include('dashboard.php');
 
 Route::get('/', ['as'=>'index','uses'=>'Home\IndexController@index'])->name('index');
-Route::get('/tour/{id}/{name}', ['as'=>'index.tour.single','uses'=>'Home\IndexController@getSingleTour']);
+//TourController
+Route::group(['prefix'=> 'tour'], function(){
+	Route::get('/{id}/{name}', ['as'=>'index.tour.single','uses'=>'Home\TourController@getTourSingle']);
+	Route::get('/list/{id}/{name}', ['as'=>'index.tour.list','uses'=>'Home\TourController@getTourList']);
+});
+
 
 
 

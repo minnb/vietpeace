@@ -1,7 +1,4 @@
 <?php
-/**
- * 
- */
 function print_result($array){
     echo "<pre>";
     print_r($array);

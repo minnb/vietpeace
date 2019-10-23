@@ -12,10 +12,17 @@ use App\Models\Category;
 use App\Models\WebConfig;
 use App\Utils\CompanyInfo;
 use Session;
-class IndexController extends Controller
+class TourController extends Controller
 {
-	public function index(Request $request){
-		return view('home.index.index');
+	public function getTourSingle($idd, $name){
+		$id = fdecrypt($idd);
+		$data = Post::findOrFail($id);
+
+		return view('home.tour.single', compact('data'));
 	}
 
+	public function getTourList($idd, $name){
+		$data_tour_all = Post::where('status', 1)->paginate(5);
+		return view('home.tour.list_all', compact('data_tour_all'));
+	}
 }

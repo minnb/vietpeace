@@ -77,11 +77,11 @@
 						<a class="btn_full_outline" href="#"><i class=" icon-heart"></i> Add to whislist</a>
 					</div>
 					<!--/box_style_1 -->
-					<?php $value = Session::has('info_company_config') ? Session::get('info_company_config') : ''; ?>
+					<?php $company_phone = Cache::has('info_company_config') ? Cache::get('info_company_config') : ''; ?>
 					<div class="box_style_4">
 						<i class="icon_set_1_icon-90"></i>
 						<h4><span>Book</span> by phone</h4>
-						<a href="tel://{{ !empty($value) ? $value->phone : '' }}" class="phone">+084 {{ !empty($value) ? $value->phone : '' }}</a>
+						<a href="tel://{{ !empty($company_phone) ? $company_phone->phone : '' }}" class="phone">{{ !empty($company_phone) ? $company_phone->phone : '' }}</a>
 						<small>Monday to Friday 9.00am - 7.30pm</small>
 					</div>
 
