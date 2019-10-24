@@ -14,9 +14,12 @@
 					-->
 				</div>
 				<div class="col-md-4">
+					<?php $unit_price_top_slide = isset($data) ? $data['unit_price'] : $data_science_on_top_tour->unit_price; ?>
+					@if($unit_price_top_slide > 0)
 					<div id="price_single_main">
-						from/per person <span><sup>$</sup>{{isset($data) ? number_format($data['unit_price'],0) : number_format($data_science_on_top_tour->unit_price,0)}}</span>
+						from/per person <span><sup>$</sup>{{ number_format($unit_price_top_slide,0) }}</span>
 					</div>
+					@endif
 				</div>
 			</div>
 		</div>

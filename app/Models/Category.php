@@ -34,9 +34,11 @@ class Category extends Model
     	return $data;
     }
 
-    public static function getSelect2Category(){
+    public static function getSelect2Category($type =''){
         $data = DB::table('categories')->where([
-            ['status',1], ['parent', '>', 0]
+            ['status', 1], 
+            ['parent', '>', 0], 
+            ['type', '=', $type]
         ])->select('id','name')->orderBy('id')->get()->toArray();
         return $data;
     }

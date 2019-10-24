@@ -64,10 +64,18 @@
                 <div class="tab-content">
                     <div id="add" class="tab-pane fade in active">
                         <div class="form-group">
-                            <label class="col-xs-1 control-label no-padding-right" for="form-field-1"> Category </label>
+                            <label class="col-xs-1 control-label no-padding-right" for="form-field-1"> Destinations </label>
                             <div class="col-xs-10">
-                                <select multiple="" id="cate_id" name="cate_id[]" class="select2">
-                                    {!! getSelectArrayForm(App\Models\Category::getSelect2Category(), old('cate_id', isset($data) ? convertStrToArr("|", $data['cate_id']): [0]) ) !!}
+                                <select multiple="" id="destinations" name="destinations[]" class="select2">
+                                    {!! getSelectArrayForm(App\Models\Category::getSelect2Category(1), old('destinations', isset($data) ? convertStrToArr("|", $data['destinations']): [0]) ) !!}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-xs-1 control-label no-padding-right" for="form-field-1"> Style tour </label>
+                            <div class="col-xs-10">
+                                <select multiple="" id="style_tour" name="style_tour[]" class="select2">
+                                    {!! getSelectArrayForm(App\Models\Category::getSelect2Category(2), old('style_tour', isset($data) ? convertStrToArr("|", $data['cate_id']): [0]) ) !!}
                                 </select>
                             </div>
                         </div>
@@ -99,7 +107,7 @@
                         <div class="form-group">
                             <label class="col-xs-1 control-label no-padding-right" for="form-field-1"> Tags </label>
                             <div class="col-xs-10">
-                                <textarea type="text" id="form-field-1" placeholder="#destination #tour" class="col-xs-10 col-sm-5" name="tags">
+                                <textarea type="text" id="form-field-1" class="col-xs-10 col-sm-5" name="tags">
                                 {{ old('tags', isset($data) ? $data['tags'] : '') }}</textarea>
                             </div>
                         </div>

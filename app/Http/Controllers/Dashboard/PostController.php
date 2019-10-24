@@ -41,7 +41,8 @@ class PostController extends Controller
             DB::beginTransaction();
                 $data = new Post();
                 $data->name = $request->name;
-                $data->cate_id = implode("|",$request->cate_id);
+                $data->cate_id = implode("|",$request->style_tour);
+                $data->destinations = implode("|",$request->destinations);
                 $data->alias = makeUnicode($request->name);
                 $data->description = $request->description;
                 $data->content = $request->content;
@@ -115,7 +116,8 @@ class PostController extends Controller
                 $data = Post::findOrFail($id);
                 $old_img = $data->image;
                 $data->name = $request->name;
-                $data->cate_id = implode("|",$request->cate_id);
+                $data->cate_id = implode("|",$request->style_tour);
+                $data->destinations = implode("|",$request->destinations);
                 $data->alias = makeUnicode($request->name);
                 $data->description = $request->description;
                 $data->content = $request->content;

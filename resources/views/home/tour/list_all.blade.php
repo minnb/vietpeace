@@ -6,15 +6,14 @@
 		<div id="position">
 			<div class="container">
 				<ul>
-					<li><a href="#">Home</a>
+					<li><a href="{{ url('/') }}">Home</a>
 					</li>
-					<li><a href="#">Tour</a>
+					<li><a href="{{ route('index.tour.list', ['id'=>0, 'name'=>'all'])}}">Tours</a>
 					</li>
 					<li>All</li>
 				</ul>
 			</div>
 		</div>
-		<!-- Position -->
 		<div class="collapse" id="collapseMap">
 			<div id="map" class="map"></div>
 		</div>

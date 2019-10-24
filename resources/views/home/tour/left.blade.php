@@ -2,26 +2,24 @@
 	<p>
 		<a class="btn_map" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" data-text-swap="Hide map" data-text-original="View on map">View on map</a>
 	</p>
+	<?php
+		$data_list_all_tour_left_menu = App\Models\CacheData::getTourListAll();
+		$destinations_list_left_menu = App\Models\Category::getSelect2Category(1);
+		$tours_list_left_menu = App\Models\Category::getSelect2Category(1);
+	?>
+	@if(isset($tours_list_left_menu))
 	<div class="box_style_cat">
 		<ul id="cat_nav">
-			<li><a href="#" id="active"><i class="icon_set_1_icon-51"></i>All tours <span>(141)</span></a>
+			<li><a href="{{ route('index.tour.list', ['id'=>0, 'name'=>'all']) }}" id="active"><i class="icon_set_1_icon-51"></i>All tours <span>({{ count($tours_list_left_menu) }})</span></a>
 			</li>
-			<li><a href="#"><i class="icon_set_1_icon-3"></i>City sightseeing <span>(20)</span></a>
-			</li>
-			<li><a href="#"><i class="icon_set_1_icon-4"></i>Museum tours <span>(16)</span></a>
-			</li>
-			<li><a href="#"><i class="icon_set_1_icon-44"></i>Historic Buildings <span>(12)</span></a>
-			</li>
-			<li><a href="#"><i class="icon_set_1_icon-37"></i>Walking tours <span>(11)</span></a>
-			</li>
-			<li><a href="#"><i class="icon_set_1_icon-14"></i>Eat & Drink <span>(20)</span></a>
-			</li>
-			<li><a href="#"><i class="icon_set_1_icon-43"></i>Churces <span>(08)</span></a>
-			</li>
-			<li><a href="#"><i class="icon_set_1_icon-28"></i>Skyline tours <span>(11)</span></a>
-			</li>
+			@foreach($tours_list_left_menu as $key=>$item_tour)
+				<li>
+					<a href="{{ route('index.tour.list', ['id'=>$item_tour->id, 'name'=>makeUnicode($item_tour->name)]) }}"><i class="icon_set_1_icon-{{$key + 1}}"></i> {!! $item_tour->name !!}<span> ({{ $data_list_all_tour_left_menu->where('id', $item_tour->id)->count() }})</span></a>
+				</li>
+			@endforeach
 		</ul>
 	</div>
+	@endif
 	<div id="filters_col">
 		<a data-toggle="collapse" href="#collapseFilters" aria-expanded="false" aria-controls="collapseFilters" id="filters_col_bt"><i class="icon_set_1_icon-65"></i>Filters</a>
 		<div class="collapse show" id="collapseFilters">

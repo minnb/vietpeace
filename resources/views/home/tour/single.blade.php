@@ -8,7 +8,7 @@
 				<ul>
 					<li><a href="{{url('/')}}">Home</a>
 					</li>
-					<li><a href="#">Tour</a>
+					<li><a href="{{ route('index.tour.list', ['id'=>0, 'name'=>'all'])}}">Tours</a>
 					</li>
 					<li>{{isset($data) ? $data['name'] : ''}}</li>
 				</ul>
