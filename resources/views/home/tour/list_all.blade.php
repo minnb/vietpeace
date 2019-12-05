@@ -10,7 +10,7 @@
 					</li>
 					<li><a href="{{ route('index.tour.list', ['id'=>0, 'name'=>'all'])}}">Tours</a>
 					</li>
-					<li>All</li>
+					<li>{{ isset($name) ? $name : 'ALL'}}</li>
 				</ul>
 			</div>
 		</div>

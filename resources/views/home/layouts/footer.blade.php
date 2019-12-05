@@ -3,7 +3,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <h3>Need help?</h3>
-                    <a href="tel://004542344599" id="phone">+084 {{ $info_company_config->phone }}</a>
+                    <a href="tel://004542344599" id="phone">{{ $info_company_config->phone }}</a>
                     <a href="mailto:help@citytours.com" id="email_footer">{{ $info_company_config->email }}</a>
                 </div>
                 <div class="col-md-3">

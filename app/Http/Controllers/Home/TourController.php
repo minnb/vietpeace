@@ -16,26 +16,32 @@ use Session;
 class TourController extends Controller
 {
 	public function getTourSingle($idd, $name){
-		$id = fdecrypt($idd);
-		$data = Post::findOrFail($id);
-
-		return view('home.tour.single', compact('data'));
+		$single_tour_id = fdecrypt($idd);
+		$data = Post::findOrFail($single_tour_id);
+		return view('home.tour.single', compact('data','single_tour_id'));
 	}
 
 	public function getTourList($idd, $name){
 		$row_in_page = 5;
 		$data_tour_all = '';
 		if($idd == 0 & $name == 'all'){
-			$data_tour_all = Post::where('status', 1)->orderBy('viewed', 'desc')->paginate($row_in_page);
-		}else{
+			//$data_tour_all = Post::where('status', 1)->orderBy('viewed', 'desc')->paginate($row_in_page);
+			$data_tour_all = collect(CacheData::getTourListAll())->paginate($row_in_page);
+		}else if($idd > 0){
 			$new_collection = collect();
 			foreach(collect(CacheData::getTourListAll()) as $item){
-				if(in_array($idd, convertStrToArr('|', $item->cate_id))){
-					$new_collection = $item;
+				$cate_arr = convertStrToArr('|', $item->cate_id);
+				$des_arr = convertStrToArr('|', $item->destinations);
+				if(count($cate_arr) == 1 || $idd == $item->cate_id || $idd == $item->destinations){
+					$new_collection->push($item);
+				}else{
+					if(in_array($idd, $cate_arr) || in_array($idd, $des_arr)){
+						$new_collection->push($item);
+					}
 				}
 			}
 			$data_tour_all = $new_collection->paginate($row_in_page);
 		}
-		return view('home.tour.list_all', compact('data_tour_all'));
+		return view('home.tour.list_all', compact('data_tour_all', 'name'));
 	}
 }

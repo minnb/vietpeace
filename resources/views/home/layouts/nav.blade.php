@@ -46,12 +46,12 @@
                                             <li><a href="javascript:void(0);">{{$subItem['name']}}</a>
                                                 <ul>
                                                     @foreach($lstSub2 as $item2)
-                                                        <li><a href="#">{{$item2['name']}}</a></li>
+                                                        <li><a href="{{ route('index.tour.list', ['id'=>$item2['id'], 'name'=>makeUnicode($item2['name'])]) }}">{{$item2['name']}}</a></li>
                                                     @endforeach
                                                 </ul>
                                             </li>
                                         @else
-                                            <li><a href="#">{{$subItem['name']}}</a>
+                                            <li><a href="{{ route('index.tour.list', ['id'=>$subItem['id'], 'name'=>makeUnicode($subItem['name'])]) }}">{{$subItem['name']}}</a>
                                         @endif
                                 @endforeach
                                 </ul>
@@ -60,13 +60,19 @@
                         @endforeach
                     </ul>
                 </div>
+                <?php 
+                    $isCart = 0;
+                    if(!Cart::isEmpty()){
+                        $isCart = Cart::getContent()->count();
+                    }
+                 ?>
                 <ul id="top_tools">
                     <li>
                         <a href="javascript:void(0);" class="search-overlay-menu-btn"><i class="icon_search"></i></a>
                     </li>
                     <li>
                         <div class="dropdown dropdown-cart">
-                            <a href="#" data-toggle="dropdown" class="cart_bt"><i class="icon_bag_alt"></i><strong>0</strong></a>
+                            <a href="{{ route('index.tour.cart.get') }}" class="cart_bt"><i class="icon_bag_alt"></i><strong>{{$isCart}}</strong></a>
                             <!--
                             <ul class="dropdown-menu" id="cart_items">
                                 <li>
