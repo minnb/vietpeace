@@ -61,7 +61,7 @@ function getImageInContent($content){
 }
 
 function fdecrypt($string) {
-    $key ='ABCD0987654321234567890';
+    $key ='01234567890795879133';
     $result = '';
     $string = base64_decode($string);
     for($i=0; $i<strlen($string); $i++) {
@@ -74,7 +74,7 @@ function fdecrypt($string) {
 }
 
 function fencrypt($string) {
-    $key ='ABCD0987654321234567890';
+    $key ='01234567890795879133';
     $result = '';
     for($i=0; $i<strlen($string); $i++) {
       $char = substr($string, $i, 1);
