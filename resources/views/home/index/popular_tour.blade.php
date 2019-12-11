@@ -3,7 +3,7 @@
 				<div class="main_title">
 					<h2>Other <span>Popular</span> tours</h2>
 					<p>
-						Quisque at tortor a libero posuere laoreet vitae sed arcu. Curabitur consequat.
+						Reliable tour operator in Vietnam, offering private and tailor-made tour packages in Vietnam.
 					</p>
 				</div>
 				<div class="row add_bottom_45">
@@ -61,7 +61,7 @@
 				<div class="banner colored">
 					<h4>Discover our Top tours <span>from $34</span></h4>
 					<p>
-						Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus civibus efficiantur in.
+						Reliable tour operator in Vietnam, offering private and tailor-made tour packages in Vietnam.
 					</p>
 					<a href="single_tour.html" class="btn_1 white">Read more</a>
 				</div>
@@ -69,11 +69,11 @@
 				<div class="row">
 					<div class="col-lg-3 col-md-6 text-center">
 						<p>
-							<a href="#"><img src="{{ asset('public/home/img/bus.jpg') }}" alt="Pic" class="img-fluid"></a>
+							<a href="#"><img src="{{ asset('public/home/img/transfer.jpg') }}" alt="Pic" class="img-fluid"></a>
 						</p>
 						<h4><span>Sightseen tour</span> booking</h4>
 						<p>
-							Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus civibus efficiantur in. Nec id tempor imperdiet deterruisset, doctus volumus explicari qui ex.
+							Reliable tour operator in Vietnam, offering private and tailor-made tour packages in Vietnam.
 						</p>
 					</div>
 					<div class="col-lg-3 col-md-6 text-center">
@@ -82,31 +82,27 @@
 						</p>
 						<h4><span>Transfer</span> booking</h4>
 						<p>
-							Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus civibus efficiantur in. Nec id tempor imperdiet deterruisset, doctus volumus explicari qui ex.
+							Reliable tour operator in Vietnam, offering private and tailor-made tour packages in Vietnam.
 						</p>
 					</div>
 					<div class="col-lg-3 col-md-6 text-center">
 						<p>
-							<a href="#"><img src="{{ asset('public/home/img/guide.jpg') }}" alt="Pic" class="img-fluid"></a>
+							<a href="#"><img src="{{ asset('public/home/img/transfer.jpg') }}" alt="Pic" class="img-fluid"></a>
 						</p>
 						<h4><span>Tour guide</span> booking</h4>
 						<p>
-							Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus civibus efficiantur in. Nec id tempor imperdiet deterruisset, doctus volumus explicari qui ex.
+							Reliable tour operator in Vietnam, offering private and tailor-made tour packages in Vietnam.
 						</p>
 					</div>
 					<div class="col-lg-3 col-md-6 text-center">
 						<p>
-							<a href="#"><img src="{{ asset('public/home/img/hotel.jpg') }}" alt="Pic" class="img-fluid"></a>
+							<a href="#"><img src="{{ asset('public/home/img/transfer.jpg') }}" alt="Pic" class="img-fluid"></a>
 						</p>
 						<h4><span>Hotel</span> booking</h4>
 						<p>
-							Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus civibus efficiantur in. Nec id tempor imperdiet deterruisset, doctus volumus explicari qui ex.
+							Reliable tour operator in Vietnam, offering private and tailor-made tour packages in Vietnam.
 						</p>
 					</div>
 				</div>
-				<!-- End row -->
-				
 			</div>
-			<!-- End container -->
 		</div>
-		<!-- End white_bg -->

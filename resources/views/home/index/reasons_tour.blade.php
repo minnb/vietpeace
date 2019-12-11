@@ -2,7 +2,7 @@
 	<div class="main_title">
 		<h2>Some <span>good</span> reasons</h2>
 		<p>
-			Quisque at tortor a libero posuere laoreet vitae sed arcu. Curabitur consequat.
+			Reliable tour operator in Vietnam, offering private and tailor-made tour packages in Vietnam.
 		</p>
 	</div>
 	<div class="row">
@@ -11,7 +11,7 @@
 				<i class="icon_set_1_icon-41"></i>
 				<h3><span>+120</span> Premium tours</h3>
 				<p>
-					Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus civibus efficiantur in. Nec id tempor imperdiet deterruisset.
+					Reliable tour operator in Vietnam, offering private and tailor-made tour packages in Vietnam.
 				</p>
 				<a href="about.html" class="btn_1 outline">Read more</a>
 			</div>
@@ -21,7 +21,7 @@
 				<i class="icon_set_1_icon-30"></i>
 				<h3><span>+1000</span> Customers</h3>
 				<p>
-					Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus civibus efficiantur in. Nec id tempor imperdiet deterruisset.
+					Reliable tour operator in Vietnam, offering private and tailor-made tour packages in Vietnam.
 				</p>
 				<a href="about.html" class="btn_1 outline">Read more</a>
 			</div>
@@ -31,7 +31,7 @@
 				<i class="icon_set_1_icon-57"></i>
 				<h3><span>H24 </span> Support</h3>
 				<p>
-					Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus civibus efficiantur in. Nec id tempor imperdiet deterruisset.
+					Reliable tour operator in Vietnam, offering private and tailor-made tour packages in Vietnam.
 				</p>
 				<a href="about.html" class="btn_1 outline">Read more</a>
 			</div>
@@ -45,7 +45,7 @@
 		<div class="col-md-6">
 			<h3><span>Get started</span> with Vietpeace Travel</h3>
 			<p>
-				Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus civibus efficiantur in. Nec id tempor imperdiet deterruisset.
+				VietpeaceTravel - reliable tour operator in Vietnam, offering private and tailor-made tour packages in Vietnam, Cambodia, Laos, Myanmar and Thailand that meet traveller's needs and budget.
 			</p>
 			<ul class="list_order">
 				<li><span>1</span>Select your preferred tours</li>

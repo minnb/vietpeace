@@ -4,10 +4,14 @@
     <meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Citytours - Premium site template for city tours agencies, transfers and tickets.">
-    <meta name="author" content="Ansonika">
+	@if(isset($seo_meta))
+		<meta name="description" content="{!! $seo_meta !!}">
+	@else
+   		<meta name="description" content="VietpeaceTravel - reliable tour operator in Vietnam, offering private and tailor-made tour packages in Vietnam, Cambodia, Laos, Myanmar and Thailand that meet traveller's needs and budget.">
+    @endif
+    <meta name="author" content="VietpeaceTravel">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>VietpeaceTravel - </title>
+    <title>VietpeaceTravel - @if(isset($page_title)) {!! $page_title !!} @endif</title>
     <link rel="shortcut icon" href="{{ asset('public/home/img/favicon.ico') }}" type="image/x-icon">
     <link rel="apple-touch-icon" type="image/x-icon" href="{{ asset('public/home/img/apple-touch-icon-57x57-precomposed.png') }}">
     <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="{{ asset('public/public/home/img/apple-touch-icon-72x72-precomposed.png') }}">

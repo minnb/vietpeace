@@ -18,14 +18,15 @@ class TourController extends Controller
 	public function getTourSingle($idd, $name){
 		$single_tour_id = fdecrypt($idd);
 		$data = Post::findOrFail($single_tour_id);
-		return view('home.tour.single', compact('data','single_tour_id'));
+		$seo_meta = $data->name;
+		$page_title = $data->name;
+		return view('home.tour.single', compact('data','single_tour_id','seo_meta','page_title'));
 	}
 
 	public function getTourList($idd, $name){
 		$row_in_page = 5;
 		$data_tour_all = '';
 		if($idd == 0 & $name == 'all'){
-			//$data_tour_all = Post::where('status', 1)->orderBy('viewed', 'desc')->paginate($row_in_page);
 			$data_tour_all = collect(CacheData::getTourListAll())->paginate($row_in_page);
 		}else if($idd > 0){
 			$new_collection = collect();
@@ -42,6 +43,6 @@ class TourController extends Controller
 			}
 			$data_tour_all = $new_collection->paginate($row_in_page);
 		}
-		return view('home.tour.list_all', compact('data_tour_all', 'name'));
+		return view('home.tour.list_all', compact('data_tour_all', 'name', 'page_title'));
 	}
 }
